@@ -27,7 +27,7 @@ const firebaseConfig = {
   appId: "1:242230524703:web:e55f74b1c8cd178bd58e2a"
 };
 
-const ADMIN_EMAIL = "ramraj969@gmail.com";
+const ADMIN_EMAIL = "ramrajsaini969@gmail.com";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
