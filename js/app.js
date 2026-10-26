@@ -264,7 +264,14 @@ $("copy").onclick = async () => {
   }
 };
 
-$("adminOpen")?.remove();
+$("adminOpen").onclick = () => {
+  if (isAdmin()) {
+    show("admin");
+  } else {
+    show("login");
+    say("Admin access requires your authorized Google account.");
+  }
+};
 
 $("refreshRegs").onclick = async () => {
   if (!isAdmin()) {
