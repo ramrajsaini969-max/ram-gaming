@@ -11,13 +11,13 @@
 <body>
 <header>
   <a class="brand" href="#home">♛ RAM <b>GAMING</b></a>
-  <button id="menu">☰</button>
+  <button id="menu" type="button">☰</button>
   <nav id="nav">
     <a href="#tournaments">Tournaments</a>
     <a href="#how">How to Join</a>
     <a href="#payment">Payment</a>
     <a href="#contact">Contact</a>
-    <button id="loginOpen">Google Login</button>
+    <button id="loginOpen" type="button">Google Login</button>
   </nav>
 </header>
 
@@ -50,12 +50,30 @@
 <section class="section dark" id="how">
   <h2>HOW TO <em>JOIN</em></h2>
   <div class="steps">
-    <article><b>01</b><h3>Google Login</h3><p>Login securely with your Google account.</p></article>
-    <article><b>02</b><h3>Choose Tournament</h3><p>Check the date, time, entry fee and prize.</p></article>
-    <article><b>03</b><h3>Pay Entry Fee</h3><p>Scan the official QR and keep your payment reference.</p></article>
-    <article><b>04</b><h3>Submit Team</h3><p>Enter both players' details and payment reference.</p></article>
+    <article>
+      <b>01</b>
+      <h3>Google Login</h3>
+      <p>Login securely with your Google account.</p>
+    </article>
+    <article>
+      <b>02</b>
+      <h3>Choose Tournament</h3>
+      <p>Check the date, time, entry fee and prize.</p>
+    </article>
+    <article>
+      <b>03</b>
+      <h3>Pay Entry Fee</h3>
+      <p>Scan the official QR and keep your payment reference.</p>
+    </article>
+    <article>
+      <b>04</b>
+      <h3>Submit Team</h3>
+      <p>Enter both players' details and payment reference.</p>
+    </article>
   </div>
-  <p class="notice">Payment is checked by the organizer. Submitting a reference does not confirm payment.</p>
+  <p class="notice">
+    Payment is checked by the organizer. Submitting a reference does not confirm payment.
+  </p>
 </section>
 
 <section class="section payment" id="payment">
@@ -65,7 +83,7 @@
     <div class="upi">
       <span>UPI ID</span>
       <strong>9376090619@fam</strong>
-      <button id="copy">Copy UPI ID</button>
+      <button id="copy" type="button">Copy UPI ID</button>
     </div>
     <p>Account name: Ramraj Saini · Mobile: 9376090619</p>
   </div>
@@ -81,7 +99,8 @@
     <p>Organizer: <b>Ramraj Saini</b></p>
     <p>Mobile / WhatsApp: <b>9376090619</b></p>
     <p>UPI ID: <b>9376090619@fam</b></p>
-    <a class="btn" target="_blank" rel="noopener" href="https://wa.me/919376090619">Contact on WhatsApp</a>
+    <a class="btn" target="_blank" rel="noopener"
+       href="https://wa.me/919376090619">Contact on WhatsApp</a>
   </div>
 </section>
 
@@ -89,30 +108,44 @@
   ♛ RAM <b>GAMING</b>
   <p>Play. Compete. Win.</p>
   <small>Independent community tournament website, not affiliated with Garena.</small>
+  <p>
+    <button id="adminOpen" type="button">Admin</button>
+  </p>
 </footer>
 
 <div class="modal hidden" id="login">
   <div class="box">
-    <button class="x" data-close="login">×</button>
+    <button class="x" data-close="login" type="button">×</button>
     <h2>Login to Ram Gaming</h2>
     <p>Use Google to register for tournaments.</p>
-    <button class="btn" id="googleLogin">Continue with Google</button>
-    <button class="btn outline" id="logout" hidden>Sign out</button>
+    <button class="btn" id="googleLogin" type="button">Continue with Google</button>
+    <button class="btn outline" id="logout" type="button" hidden>Sign out</button>
     <p id="loginmsg">Your Google account will be used to identify your registration.</p>
   </div>
 </div>
 
 <div class="modal hidden" id="admin">
   <div class="box wide">
-    <button class="x" data-close="admin">×</button>
+    <button class="x" data-close="admin" type="button">×</button>
     <h2>Admin Dashboard</h2>
     <p id="adminmsg">Sign in with your authorized admin Google account.</p>
+
     <div id="editor" class="hidden">
-      <label>Tournament title<input id="title"></label>
-      <label>Entry fee (₹)<input id="fee" type="number" min="0"></label>
-      <label>Date<input id="date" type="date"></label>
-      <label>Time<input id="time" type="time"></label>
-      <label>Prize details<input id="prize"></label>
+      <label>Tournament title
+        <input id="title" maxlength="100">
+      </label>
+      <label>Entry fee (₹)
+        <input id="fee" type="number" min="0">
+      </label>
+      <label>Date
+        <input id="date" type="date">
+      </label>
+      <label>Time
+        <input id="time" type="time">
+      </label>
+      <label>Prize details
+        <input id="prize" maxlength="300">
+      </label>
       <label>Status
         <select id="status">
           <option>Open</option>
@@ -120,10 +153,14 @@
           <option>Closed</option>
         </select>
       </label>
-      <label>Rules<textarea id="rules"></textarea></label>
-      <button class="btn" id="save">Save tournament details</button>
+      <label>Rules
+        <textarea id="rules"></textarea>
+      </label>
+
+      <button class="btn" id="save" type="button">Save tournament details</button>
+
       <h3>Team registrations</h3>
-      <button class="btn outline" id="refreshRegs">Refresh registrations</button>
+      <button class="btn outline" id="refreshRegs" type="button">Refresh registrations</button>
       <div id="registrations"></div>
     </div>
   </div>
@@ -131,20 +168,39 @@
 
 <div class="modal hidden" id="team">
   <div class="box wide">
-    <button class="x" data-close="team">×</button>
+    <button class="x" data-close="team" type="button">×</button>
     <h2>Team Registration</h2>
     <p id="selected"></p>
+
     <form id="teamform">
-      <label>Team name<input name="team" required maxlength="60"></label>
-      <label>Player 1 name<input name="p1" required maxlength="60"></label>
-      <label>Player 1 Free Fire UID<input name="uid1" required maxlength="30"></label>
-      <label>Player 2 name<input name="p2" required maxlength="60"></label>
-      <label>Player 2 Free Fire UID<input name="uid2" required maxlength="30"></label>
-      <label>Payment UTR/reference<input name="utr" required maxlength="80"></label>
-      <label><input type="checkbox" required> I confirm these details are correct.</label>
+      <label>Team name
+        <input name="team" required maxlength="60">
+      </label>
+      <label>Player 1 name
+        <input name="p1" required maxlength="60">
+      </label>
+      <label>Player 1 Free Fire UID
+        <input name="uid1" required maxlength="30">
+      </label>
+      <label>Player 2 name
+        <input name="p2" required maxlength="60">
+      </label>
+      <label>Player 2 Free Fire UID
+        <input name="uid2" required maxlength="30">
+      </label>
+      <label>Payment UTR/reference
+        <input name="utr" required maxlength="80">
+      </label>
+      <label>
+        <input type="checkbox" required>
+        I confirm these details are correct.
+      </label>
       <button class="btn" type="submit">Submit registration request</button>
     </form>
-    <p class="notice">Your request is not confirmed until the organizer checks your payment.</p>
+
+    <p class="notice">
+      Your request is not confirmed until the organizer checks your payment.
+    </p>
   </div>
 </div>
 
