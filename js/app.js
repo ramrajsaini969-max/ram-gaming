@@ -352,7 +352,7 @@ $("teamform").onsubmit = async event => {
     say("Registration submitted. Payment still needs organizer verification.");
   } catch (error) {
     console.error("Registration failed:", error);
-    say("Registration failed. Check Firestore Rules.");
+    say("Registration failed: " + (error.code || error.message));
   }
 };
 
