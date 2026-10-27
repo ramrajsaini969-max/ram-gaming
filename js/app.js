@@ -348,7 +348,7 @@ $("teamform").onsubmit = async event => {
   try {
     await addDoc(collection(db, "registrations"), data);
     hide("team");
-    event.currentTarget.reset();
+    $("teamform").reset();
     say("Registration submitted. Payment still needs organizer verification.");
   } catch (error) {
     console.error("Registration failed:", error);
