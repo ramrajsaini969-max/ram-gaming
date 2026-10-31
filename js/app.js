@@ -331,7 +331,7 @@ $("teamform").onsubmit = async event => {
     say("Choose a tournament first.");
     return;
   }
-  const formElement = event.currentTarget; 
+  const formElement = event.currentTarget;
   const form = new FormData(formElement);
   const data = {
     uid: currentUser.uid,
@@ -349,7 +349,7 @@ $("teamform").onsubmit = async event => {
   try {
     await addDoc(collection(db, "registrations"), data);
     hide("team");
-    formElement.reset();
+   formElement.reset();
     say("Registration submitted. Payment still needs organizer verification.");
   } catch (error) {
     console.error("Registration failed:", error);
