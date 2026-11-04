@@ -14,7 +14,6 @@ const firebaseConfig = {
   messagingSenderId: "242230524703",
   appId: "1:242230524703:web:e55f74b1c8cd178bd58e2a"
 };
-
 const ADMIN_EMAIL = "ramrajsaini969@gmail.com";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -29,7 +28,7 @@ const hide = id => $(id)?.classList.add("hidden");
 let currentUser = null;
 let selectedTournament = null;
 let tournaments = [
-  { id: "br", type: "BR", format: "Duo", playerCount: 2, title: "BR Duo Tournament", fee: 50, date: "", time: "", prize: "Prize details announced in the group", status: "Open", rules: "Confirm schedule and room details with organizer." },
+  { id: "br", type: "BR", format: "Squad", playerCount: 4, title: "BR Squad Tournament", fee: 50, date: "", time: "", prize: "Prize details announced in the group", status: "Open", rules: "Confirm schedule and room details with organizer." },
   { id: "cs", type: "CS", format: "Squad", playerCount: 4, title: "CS Squad Tournament", fee: 50, date: "", time: "", prize: "Prize details announced in the group", status: "Open", rules: "Confirm schedule and room details with organizer." }
 ];
 
@@ -156,7 +155,7 @@ function buildAdminEditor() {
   editor.replaceChildren();
 
   const intro = document.createElement("p");
-  intro.textContent = "Set the start date and time for each tournament (India time). BR is a duo; CS is a four-player squad. Saved changes are visible to all visitors.";
+  intro.textContent = "Set the start date and time for each tournament (India time). BR and CS are four-player squads. Saved changes are visible to all visitors.";
   editor.append(intro);
 
   const grid = document.createElement("div");
@@ -249,8 +248,8 @@ async function saveTournament(id) {
     status: $(`${id}-status`).value,
     rules: $(`${id}-rules`).value.trim()
   };
-  if (!updated.title || !Number.isFinite(updated.fee) || updated.fee < 0 || !updated.date || !updated.time) {
-    say("Enter a valid title, fee, start date, and start time.");
+  if (!updated.title || !Number.isFinite(updated.fee) || updated.fee < 0 || Boolean(updated.date) !== Boolean(updated.time)) {
+    say("Enter a valid title and fee. Add both start date and time when scheduling.");
     return;
   }
   const next = tournaments.map(t => t.id === id ? updated : t);
