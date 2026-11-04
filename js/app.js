@@ -29,8 +29,8 @@ const hide = id => $(id)?.classList.add("hidden");
 let currentUser = null;
 let selectedTournament = null;
 let tournaments = [
-  { id: "br", type: "BR", title: "BR Duo Tournament", fee: 50, date: "", time: "", prize: "Prize details announced in the group", status: "Open", rules: "Confirm schedule and room details with organizer." },
-  { id: "cs", type: "CS", title: "CS Tournament", fee: 50, date: "", time: "", prize: "Prize details announced in the group", status: "Open", rules: "Confirm schedule and room details with organizer." }
+  { id: "br", type: "BR", format: "Duo", playerCount: 2, title: "BR Duo Tournament", fee: 50, date: "", time: "", prize: "Prize details announced in the group", status: "Open", rules: "Confirm schedule and room details with organizer." },
+  { id: "cs", type: "CS", format: "Squad", playerCount: 4, title: "CS Squad Tournament", fee: 50, date: "", time: "", prize: "Prize details announced in the group", status: "Open", rules: "Confirm schedule and room details with organizer." }
 ];
 
 function say(message) {
@@ -44,6 +44,43 @@ function isAdmin(user = currentUser) {
     user.emailVerified === true);
 }
 
+function formatSchedule(date, time) {
+  if (!date || !time) return "Start date and time to be announced";
+  const [year, month, day] = date.split("-").map(Number);
+  const [hours, minutes] = time.split(":").map(Number);
+  if (![year, month, day, hours, minutes].every(Number.isFinite)) {
+    return "Start date and time to be announced";
+  }
+  const start = new Date(`${date}T${time}:00+05:30`);
+  const dateText = new Intl.DateTimeFormat("en-IN", {
+    weekday: "short", day: "numeric", month: "short", year: "numeric", timeZone: "Asia/Kolkata"
+  }).format(start);
+  const timeText = new Intl.DateTimeFormat("en-IN", {
+    hour: "numeric", minute: "2-digit", hour12: true, timeZone: "Asia/Kolkata"
+  }).format(start);
+  return `Starts ${dateText} · ${timeText} IST`;
+}
+
+function buildPlayerFields(tournament) {
+  const fields = $("playerFields");
+  fields.replaceChildren();
+  for (let number = 1; number <= tournament.playerCount; number += 1) {
+    for (const [fieldName, labelText, maxLength] of [
+      [`p${number}`, `Player ${number} name`, 60],
+      [`uid${number}`, `Player ${number} Free Fire UID`, 30]
+    ]) {
+      const label = document.createElement("label");
+      label.textContent = labelText;
+      const input = document.createElement("input");
+      input.name = fieldName;
+      input.required = true;
+      input.maxLength = maxLength;
+      label.append(input);
+      fields.append(label);
+    }
+  }
+}
+
 async function loadTournaments() {
   try {
     const snap = await getDoc(doc(db, "site", "tournaments"));
@@ -52,7 +89,12 @@ async function loadTournaments() {
       tournaments = ["br", "cs"].map(id => {
         const old = tournaments.find(t => t.id === id);
         const found = saved.find(t => t.id === id);
-        return found ? { ...old, ...found } : old;
+        if (!found) return old;
+        const merged = { ...old, ...found, playerCount: old.playerCount, format: old.format };
+        if (id === "cs" && (!found.title || /^CS Tournament$/i.test(found.title) || /duo/i.test(found.title))) {
+          merged.title = "CS Squad Tournament";
+        }
+        return merged;
       });
     } else {
       // Preserve the old single-tournament record if this site used the earlier version.
@@ -81,9 +123,10 @@ function renderTournaments() {
     title.textContent = t.title;
     const fee = document.createElement("p");
     fee.className = "fee";
-    fee.textContent = `₹${t.fee} per duo`;
+    fee.textContent = `₹${t.fee} per ${t.format} · ${t.playerCount} players`;
     const meta = document.createElement("p");
-    meta.textContent = `${t.date || "Date to be announced"} · ${t.time || "Time to be announced"}`;
+    meta.className = "schedule";
+    meta.textContent = formatSchedule(t.date, t.time);
     const prize = document.createElement("p");
     prize.textContent = t.prize || "Prize details announced in the group";
     const rules = document.createElement("p");
@@ -99,7 +142,8 @@ function renderTournaments() {
         say("Continue with Google to register.");
         return;
       }
-      $("selected").textContent = `${t.title} · Entry ₹${t.fee}`;
+      $("selected").textContent = `${t.title} · ₹${t.fee} · ${t.format} (${t.playerCount} players)`;
+      buildPlayerFields(t);
       show("team");
     };
     article.append(status, title, fee, meta, prize, rules, join);
@@ -112,7 +156,7 @@ function buildAdminEditor() {
   editor.replaceChildren();
 
   const intro = document.createElement("p");
-  intro.textContent = "Edit BR and CS details below. Changes are published for all visitors.";
+  intro.textContent = "Set the start date and time for each tournament (India time). BR is a duo; CS is a four-player squad. Saved changes are visible to all visitors.";
   editor.append(intro);
 
   const grid = document.createElement("div");
@@ -128,8 +172,8 @@ function buildAdminEditor() {
     const fields = [
       ["title", "Tournament title", "text"],
       ["fee", "Entry fee (₹)", "number"],
-      ["date", "Date", "date"],
-      ["time", "Time", "time"],
+      ["date", "Start date", "date"],
+      ["time", "Start time (IST)", "time"],
       ["prize", "Prize details", "text"],
       ["status", "Status", "select"],
       ["rules", "Rules", "textarea"]
@@ -156,6 +200,7 @@ function buildAdminEditor() {
       }
       input.id = `${t.id}-${key}`;
       input.value = t[key] ?? "";
+      if (key === "date" || key === "time") input.required = true;
       label.append(input);
       card.append(label);
     });
@@ -194,6 +239,8 @@ async function saveTournament(id) {
   const updated = {
     id: old.id,
     type: old.type,
+    format: old.format,
+    playerCount: old.playerCount,
     title: $(`${id}-title`).value.trim(),
     fee: Number($(`${id}-fee`).value),
     date: $(`${id}-date`).value,
@@ -202,8 +249,8 @@ async function saveTournament(id) {
     status: $(`${id}-status`).value,
     rules: $(`${id}-rules`).value.trim()
   };
-  if (!updated.title || !Number.isFinite(updated.fee) || updated.fee < 0) {
-    say("Enter a valid title and fee.");
+  if (!updated.title || !Number.isFinite(updated.fee) || updated.fee < 0 || !updated.date || !updated.time) {
+    say("Enter a valid title, fee, start date, and start time.");
     return;
   }
   const next = tournaments.map(t => t.id === id ? updated : t);
@@ -241,7 +288,12 @@ async function loadRegistrations() {
       const heading = document.createElement("h4");
       heading.textContent = `${data.tournament || "Tournament"} — ${data.team || "Team"}`;
       const details = document.createElement("p");
-      details.textContent = `Email: ${data.email || ""} · Players: ${data.p1 || ""} (${data.uid1 || ""}) + ${data.p2 || ""} (${data.uid2 || ""})`;
+      const count = Math.max(2, Math.min(4, Number(data.playerCount) || 2));
+      const players = Array.from({ length: count }, (_, index) => {
+        const number = index + 1;
+        return `${data[`p${number}`] || ""} (${data[`uid${number}`] || ""})`;
+      }).filter(Boolean).join(" + ");
+      details.textContent = `Email: ${data.email || ""} · Players: ${players}`;
       const payment = document.createElement("p");
       payment.textContent = `Payment reference: ${data.utr || ""}`;
       const status = document.createElement("p");
@@ -337,15 +389,16 @@ $("teamform").onsubmit = async event => {
     uid: currentUser.uid,
     email: currentUser.email || "",
     tournament: selectedTournament.title,
+    playerCount: selectedTournament.playerCount,
     team: String(form.get("team") || "").trim(),
-    p1: String(form.get("p1") || "").trim(),
-    uid1: String(form.get("uid1") || "").trim(),
-    p2: String(form.get("p2") || "").trim(),
-    uid2: String(form.get("uid2") || "").trim(),
     utr: String(form.get("utr") || "").trim(),
     status: "Pending verification",
     createdAt: serverTimestamp()
   };
+  for (let number = 1; number <= selectedTournament.playerCount; number += 1) {
+    data[`p${number}`] = String(form.get(`p${number}`) || "").trim();
+    data[`uid${number}`] = String(form.get(`uid${number}`) || "").trim();
+  }
   try {
     await addDoc(collection(db, "registrations"), data);
     hide("team");
