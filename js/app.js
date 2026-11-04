@@ -90,6 +90,9 @@ async function loadTournaments() {
         const found = saved.find(t => t.id === id);
         if (!found) return old;
         const merged = { ...old, ...found, playerCount: old.playerCount, format: old.format };
+        if (id === "br" && (!found.title || /duo/i.test(found.title))) {
+          merged.title = "BR Squad Tournament";
+        }
         if (id === "cs" && (!found.title || /^CS Tournament$/i.test(found.title) || /duo/i.test(found.title))) {
           merged.title = "CS Squad Tournament";
         }
