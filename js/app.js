@@ -24,6 +24,8 @@ provider.setCustomParameters({ prompt: "select_account" });
 const $ = id => document.getElementById(id);
 const show = id => $(id)?.classList.remove("hidden");
 const hide = id => $(id)?.classList.add("hidden");
+const PLAYER_COUNTS = { Solo: 1, Duo: 2, Squad: 4 };
+const formatForCount = count => ({ 1: "Solo", 2: "Duo", 4: "Squad" }[count] || "Duo");
 
 let currentUser = null;
 let selectedTournament = null;
@@ -89,11 +91,12 @@ async function loadTournaments() {
         const old = tournaments.find(t => t.id === id);
         const found = saved.find(t => t.id === id);
         if (!found) return old;
-        const merged = { ...old, ...found, playerCount: old.playerCount, format: old.format };
-        if (id === "br" && (!found.title || /duo/i.test(found.title))) {
+        const format = found.formatVersion === 2 && PLAYER_COUNTS[found.format] ? found.format : old.format;
+        const merged = { ...old, ...found, format, playerCount: PLAYER_COUNTS[format] };
+        if (found.formatVersion !== 2 && id === "br") {
           merged.title = "BR Squad Tournament";
         }
-        if (id === "cs" && (!found.title || /^CS Tournament$/i.test(found.title) || /duo/i.test(found.title))) {
+        if (found.formatVersion !== 2 && id === "cs") {
           merged.title = "CS Squad Tournament";
         }
         return merged;
@@ -158,7 +161,7 @@ function buildAdminEditor() {
   editor.replaceChildren();
 
   const intro = document.createElement("p");
-  intro.textContent = "Set the start date and time for each tournament (India time). BR and CS are four-player squads. Saved changes are visible to all visitors.";
+  intro.textContent = "Choose Solo (1 player), Duo (2 players), or Squad (4 players) for each tournament. Set its start date and time in India time. Saved changes are visible to all visitors.";
   editor.append(intro);
 
   const grid = document.createElement("div");
@@ -173,6 +176,7 @@ function buildAdminEditor() {
 
     const fields = [
       ["title", "Tournament title", "text"],
+      ["format", "Tournament format", "format"],
       ["fee", "Entry fee (₹)", "number"],
       ["date", "Start date", "date"],
       ["time", "Start time (IST)", "time"],
@@ -184,7 +188,15 @@ function buildAdminEditor() {
       const label = document.createElement("label");
       label.textContent = labelText;
       let input;
-      if (type === "select") {
+      if (type === "format") {
+        input = document.createElement("select");
+        Object.keys(PLAYER_COUNTS).forEach(value => {
+          const option = document.createElement("option");
+          option.value = value;
+          option.textContent = value;
+          input.append(option);
+        });
+      } else if (type === "select") {
         input = document.createElement("select");
         ["Open", "Full", "Closed"].forEach(value => {
           const option = document.createElement("option");
@@ -241,8 +253,9 @@ async function saveTournament(id) {
   const updated = {
     id: old.id,
     type: old.type,
-    format: old.format,
-    playerCount: old.playerCount,
+    format: $(`${id}-format`).value,
+    formatVersion: 2,
+    playerCount: PLAYER_COUNTS[$(`${id}-format`).value],
     title: $(`${id}-title`).value.trim(),
     fee: Number($(`${id}-fee`).value),
     date: $(`${id}-date`).value,
@@ -290,7 +303,7 @@ async function loadRegistrations() {
       const heading = document.createElement("h4");
       heading.textContent = `${data.tournament || "Tournament"} — ${data.team || "Team"}`;
       const details = document.createElement("p");
-      const count = Math.max(2, Math.min(4, Number(data.playerCount) || 2));
+      const count = Math.max(1, Math.min(4, Number(data.playerCount) || 2));
       const players = Array.from({ length: count }, (_, index) => {
         const number = index + 1;
         return `${data[`p${number}`] || ""} (${data[`uid${number}`] || ""})`;
