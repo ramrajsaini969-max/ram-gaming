@@ -27,6 +27,25 @@ const hide = id => $(id)?.classList.add("hidden");
 const PLAYER_COUNTS = { Solo: 1, Duo: 2, Squad: 4 };
 const formatForCount = count => ({ 1: "Solo", 2: "Duo", 4: "Squad" }[count] || "Duo");
 
+const istClockFormatter = new Intl.DateTimeFormat("en-IN", {
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+  timeZone: "Asia/Kolkata"
+});
+
+function updateLiveClock() {
+  const clock = $("liveClock");
+  if (!clock) return;
+  const now = new Date();
+  clock.dateTime = now.toISOString();
+  clock.textContent = istClockFormatter.format(now);
+}
+
+updateLiveClock();
+window.setInterval(updateLiveClock, 1000);
+
 let currentUser = null;
 let selectedTournament = null;
 let tournaments = [
