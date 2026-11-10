@@ -34,6 +34,10 @@ const istClockFormatter = new Intl.DateTimeFormat("en-IN", {
   hour12: false,
   timeZone: "Asia/Kolkata"
 });
+const istClockPartsFormatter = new Intl.DateTimeFormat("en-GB", {
+  hour: "2-digit", minute: "2-digit", second: "2-digit",
+  hourCycle: "h23", timeZone: "Asia/Kolkata"
+});
 
 function updateLiveClock() {
   const clock = $("liveClock");
@@ -41,6 +45,18 @@ function updateLiveClock() {
   const now = new Date();
   clock.dateTime = now.toISOString();
   clock.textContent = istClockFormatter.format(now);
+
+  const face = $("analogClock");
+  if (!face) return;
+  const parts = Object.fromEntries(istClockPartsFormatter.formatToParts(now)
+    .filter(part => part.type !== "literal")
+    .map(part => [part.type, Number(part.value)]));
+  const hourAngle = ((parts.hour % 12) + parts.minute / 60) * 30;
+  const minuteAngle = (parts.minute + parts.second / 60) * 6;
+  const secondAngle = parts.second * 6;
+  face.style.setProperty("--hour-angle", hourAngle + "deg");
+  face.style.setProperty("--minute-angle", minuteAngle + "deg");
+  face.style.setProperty("--second-angle", secondAngle + "deg");
 }
 
 updateLiveClock();
