@@ -28,10 +28,10 @@ const PLAYER_COUNTS = { Solo: 1, Duo: 2, Squad: 4 };
 const formatForCount = count => ({ 1: "Solo", 2: "Duo", 4: "Squad" }[count] || "Duo");
 
 const istClockFormatter = new Intl.DateTimeFormat("en-IN", {
-  hour: "2-digit",
+  hour: "numeric",
   minute: "2-digit",
   second: "2-digit",
-  hour12: false,
+  hour12: true,
   timeZone: "Asia/Kolkata"
 });
 const istClockPartsFormatter = new Intl.DateTimeFormat("en-GB", {
