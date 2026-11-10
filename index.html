@@ -11,8 +11,16 @@
 <header>
   <a class="brand" href="#home">♛ RAM <b>GAMING</b></a>
   <div class="site-clock" aria-label="Current time in India">
-    <span class="site-clock-label"><span class="site-clock-dot" aria-hidden="true"></span>LIVE · IST</span>
-    <time id="liveClock" aria-label="Current India time">--:--:--</time>
+    <span class="analog-clock" id="analogClock" aria-hidden="true">
+      <span class="clock-hand clock-hour"></span>
+      <span class="clock-hand clock-minute"></span>
+      <span class="clock-hand clock-second"></span>
+      <span class="clock-pin"></span>
+    </span>
+    <span class="site-clock-meta">
+      <span class="site-clock-label"><span class="site-clock-dot" aria-hidden="true"></span>LIVE · IST</span>
+      <time id="liveClock" aria-label="Current India time">--:--:--</time>
+    </span>
   </div>
   <button id="menu" type="button" aria-label="Toggle menu">☰</button>
   <nav id="nav">
