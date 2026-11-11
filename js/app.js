@@ -28,27 +28,70 @@ const PLAYER_COUNTS = { Solo: 1, Duo: 2, Squad: 4 };
 const formatForCount = count => ({ 1: "Solo", 2: "Duo", 4: "Squad" }[count] || "Duo");
 
 const istClockFormatter = new Intl.DateTimeFormat("en-IN", {
-  hour: "numeric",
+  hour: "2-digit",
   minute: "2-digit",
   hour12: true,
   timeZone: "Asia/Kolkata"
 });
+const LCD_DIGIT_SEGMENTS = {
+  "0": "abcdef", "1": "bc", "2": "abdeg", "3": "abcdg", "4": "bcfg",
+  "5": "acdfg", "6": "acdefg", "7": "abc", "8": "abcdefg", "9": "abcdfg"
+};
 
 function updateLiveClock() {
   const clock = $("liveClock");
   const period = $("clockPeriod");
-  if (!clock || !period) return;
+  const lcdDigits = $("lcdDigits");
+  if (!clock || !period || !lcdDigits) return;
+
   const now = new Date();
   clock.dateTime = now.toISOString();
   const parts = Object.fromEntries(istClockFormatter.formatToParts(now)
     .filter(part => part.type !== "literal")
     .map(part => [part.type, part.value]));
-  clock.textContent = parts.hour + ":" + parts.minute;
+  const displayValue = parts.hour + parts.minute;
   period.textContent = parts.dayPeriod.toUpperCase();
+  clock.textContent = parts.hour + ":" + parts.minute + " " + period.textContent;
+
+  if (!lcdDigits.childElementCount) {
+    for (let index = 0; index < 4; index += 1) {
+      if (index === 2) {
+        const colon = document.createElement("span");
+        colon.className = "lcd-colon";
+        colon.textContent = ":";
+        lcdDigits.append(colon);
+      }
+      const digit = document.createElement("span");
+      digit.className = "lcd-digit";
+      for (const segmentName of "abcdefg") {
+        const segment = document.createElement("i");
+        segment.className = "lcd-segment";
+        segment.dataset.segment = segmentName;
+        digit.append(segment);
+      }
+      lcdDigits.append(digit);
+    }
+  }
+
+  lcdDigits.querySelectorAll(".lcd-digit").forEach((digit, index) => {
+    const litSegments = LCD_DIGIT_SEGMENTS[displayValue[index]] || "";
+    digit.querySelectorAll(".lcd-segment").forEach(segment => {
+      segment.classList.toggle("lit", litSegments.includes(segment.dataset.segment));
+    });
+  });
+}
+
+function scheduleLiveClockUpdate() {
+  const now = new Date();
+  const delay = 60000 - (now.getSeconds() * 1000 + now.getMilliseconds());
+  window.setTimeout(() => {
+    updateLiveClock();
+    scheduleLiveClockUpdate();
+  }, delay);
 }
 
 updateLiveClock();
-window.setInterval(updateLiveClock, 1000);
+scheduleLiveClockUpdate();
 
 let currentUser = null;
 let selectedTournament = null;
