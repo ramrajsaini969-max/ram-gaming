@@ -10,11 +10,13 @@
 <body>
 <header>
   <a class="brand" href="#home">♛ RAM <b>GAMING</b></a>
-  <div class="site-clock" aria-label="Current time in India">
+  <div class="site-clock" role="group" aria-label="Current time in India">
     <span class="digital-clock" aria-hidden="true">
-      <span class="clock-display-row"><time id="liveClock" aria-label="Current India time">--:--</time><span id="clockPeriod" class="clock-period">--</span></span>
+      <span id="lcdDigits" class="lcd-digits"></span>
+      <span id="clockPeriod" class="clock-period">--</span>
       <span class="clock-zone"><span class="site-clock-dot"></span>LIVE · IST</span>
     </span>
+    <time id="liveClock" class="visually-hidden" aria-label="Current India time">--:-- --</time>
   </div>
   <button id="menu" type="button" aria-label="Toggle menu">☰</button>
   <nav id="nav">
