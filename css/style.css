@@ -57,17 +57,16 @@ input:focus,textarea:focus,select:focus{outline:2px solid #ffc928aa;outline-offs
 @media(prefers-reduced-motion:reduce){.site-clock-dot{animation:none}}
 
 
-/* Analog clock face with continuously synchronized IST hands. */
-.site-clock{gap:12px;padding:7px 13px 7px 8px;border-color:#ffc9283d;background:linear-gradient(145deg,#121e32ed,#080f1ded);box-shadow:0 8px 28px #0004,0 0 20px #ffc9280c}
-.analog-clock{position:relative;display:inline-block;flex:0 0 52px;width:52px;height:52px;border:1px solid #ffc92899;border-radius:50%;background:radial-gradient(circle at 32% 24%,#263a58,#0a1220 76%);box-shadow:inset 0 0 0 3px #ffffff0b,0 0 17px #ffc92820}
-.analog-clock::before{content:"";position:absolute;inset:4px;border-radius:50%;background:repeating-conic-gradient(from -1deg,#dce5f2 0deg 1.7deg,transparent 1.7deg 30deg);mask:radial-gradient(transparent 0 78%,#000 80%)}
-.clock-hand{position:absolute;left:50%;bottom:50%;border-radius:4px;transform-origin:50% 100%}
-.clock-hour{width:3px;height:14px;margin-left:-1.5px;background:#f5f7fc;transform:rotate(var(--hour-angle,0deg))}
-.clock-minute{width:2px;height:19px;margin-left:-1px;background:#ffc928;transform:rotate(var(--minute-angle,0deg))}
-.clock-second{width:1px;height:21px;margin-left:-.5px;background:#ff785e;transform:rotate(var(--second-angle,0deg));transition:transform .18s linear}
-.clock-pin{position:absolute;left:50%;top:50%;width:5px;height:5px;border:1px solid #0b111d;border-radius:50%;background:#fff;transform:translate(-50%,-50%);z-index:2}
-.site-clock-meta{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
-.site-clock-label{font-size:.62rem;letter-spacing:.13em}
-.site-clock time{font-size:1rem;letter-spacing:.09em}
-@media(max-width:800px){.site-clock{gap:9px;padding:6px 10px 6px 7px}.analog-clock{flex-basis:46px;width:46px;height:46px}.clock-hour{height:12px}.clock-minute{height:16px}.clock-second{height:18px}.site-clock time{font-size:.88rem}}
-@media(max-width:380px){.site-clock{gap:6px;padding:5px 7px 5px 5px}.analog-clock{flex-basis:40px;width:40px;height:40px}.clock-hour{height:10px}.clock-minute{height:14px}.clock-second{height:16px}.site-clock time{font-size:.78rem}}
+/* Round pearl LCD clock inspired by a real digital desk clock. */
+.site-clock{display:flex;align-items:center;justify-content:center;flex:0 0 auto;margin:0 14px 0 20px}
+.digital-clock{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:84px;height:84px;border:5px solid #eef1f7;border-radius:50%;background:radial-gradient(ellipse at 32% 20%,#fff 0,#f7f8fc 43%,#dfe3eb 100%);box-shadow:inset 0 0 0 1px #ffffff,inset 0 -5px 12px #c4cad655,0 3px 8px #0005,0 0 0 1px #cbd1dd,0 0 16px #e8edf622;color:#657087}
+.digital-clock::before{content:"";position:absolute;inset:4px;border-radius:50%;background:repeating-linear-gradient(0deg,#66728a08 0 1px,transparent 1px 3px);pointer-events:none}
+.clock-display-row{position:relative;display:flex;align-items:baseline;gap:3px;margin-top:4px;white-space:nowrap}
+.site-clock time{color:#657087;font:800 1.18rem/.95 "Courier New",ui-monospace,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.09em;text-shadow:0 1px #fff,0 0 1px #59647a}
+.clock-period{color:#737e94;font:800 .47rem/1 system-ui,sans-serif;letter-spacing:.02em}
+.clock-zone{position:relative;display:flex;align-items:center;gap:4px;color:#737e94;font:800 .39rem/1 system-ui,sans-serif;letter-spacing:.13em;white-space:nowrap}
+.site-clock-dot{width:5px;height:5px;border-radius:50%;background:#46b989;box-shadow:0 0 5px #46b98988;animation:clock-pulse 1.8s ease-in-out infinite}
+@keyframes clock-pulse{50%{opacity:.45;box-shadow:0 0 2px #46b98955}}
+@media(max-width:800px){header{min-height:88px;height:auto;padding-top:6px;padding-bottom:6px;gap:10px}.site-clock{margin:0 4px 0 auto}.digital-clock{width:72px;height:72px;border-width:4px}.site-clock time{font-size:1.02rem}.clock-period{font-size:.42rem}.clock-zone{font-size:.35rem}}
+@media(max-width:380px){header{gap:6px;padding-left:10px;padding-right:10px}.brand{font-size:.96rem}.digital-clock{width:64px;height:64px;border-width:4px}.site-clock time{font-size:.92rem}.clock-zone{font-size:.32rem}}
+@media(prefers-reduced-motion:reduce){.site-clock-dot{animation:none}}
