@@ -80,3 +80,16 @@ input:focus,textarea:focus,select:focus{outline:2px solid #ffc928aa;outline-offs
 .buddy-toggle{border-color:#ff623e;background:radial-gradient(circle at 35% 25%,#41202a,#11111a 72%);box-shadow:0 0 0 5px #ff57301d,0 0 25px #ff563c66,0 0 32px #852fff44}
 .buddy-toggle-label{right:48px;border-color:#ff714988;background:#1b1119;color:#ffd21e}
 @media(max-width:500px){.buddy-panel{border-color:#ff6743aa}.buddy-guide h3{font-size:1.17rem}.buddy-actions.guide-actions button{font-size:.68rem}}
+
+/* Transparent 3D Detective Panda image and on-device Hindi voice picker. */
+.buddy-avatar{overflow:visible;padding:0;border:0;background:transparent;box-shadow:none}
+.buddy-avatar img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 2px 4px #0008)}
+.buddy-face{display:block;width:74px;height:78px;background:transparent;overflow:visible}
+.buddy-face img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 4px 5px #0008)}
+.buddy-toggle{width:88px;height:88px;padding:3px;border-radius:23px;overflow:visible;background:transparent;border:1px solid #ff623e;box-shadow:0 0 0 5px #ff57301d,0 0 25px #ff563c66,0 0 32px #852fff44}
+.buddy-toggle:hover{background:#1a121b}
+.buddy-toggle-label{right:65px;bottom:4px}
+.buddy-voice-select{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px;padding:8px 10px;border:1px solid #ffffff18;border-radius:8px;background:#090a11;color:#c9bfd2;font-size:.69rem}
+.buddy-voice-select select{max-width:63%;padding:6px 8px;border:1px solid #5b465f;border-radius:7px;background:#17111c;color:#fff;font:600 .68rem system-ui,sans-serif}
+@media(max-width:500px){.buddy-toggle{width:78px;height:80px;border-radius:20px}.buddy-face{width:66px;height:70px}.buddy-toggle-label{right:58px}.buddy-voice-select select{max-width:60%}}
+@media(prefers-reduced-motion:reduce){.buddy-face img{filter:drop-shadow(0 1px 2px #0008)}}
