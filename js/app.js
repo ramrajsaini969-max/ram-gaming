@@ -611,9 +611,5 @@ $("buddySpeak").onclick = () => {
   utterance.onerror = () => { speakButton.textContent = "🔊 सुनो"; };
   synth.speak(utterance);
 };
-$("buddyGo").onclick = () => {
-  $("buddyPanel").classList.add("hidden");
-  $("buddyToggle").setAttribute("aria-expanded", "false");
-};
 
 loadTournaments();
