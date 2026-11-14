@@ -434,4 +434,55 @@ $("copy").onclick = async () => {
   }
 };
 
+
+const buddyReply = $("buddyReply");
+let buddyLastSpoken = "Arre champion! Tournament card chuno, register karo, aur payment reference daal ke form submit karo.";
+
+function answerBuddy(topic) {
+  const target = topic === "payment" ? "#payment" : "#tournaments";
+  const link = $("buddyGo");
+  if (link) link.href = target;
+
+  const answers = {
+    join: "Pehle Google Login karo. Phir Tournaments mein apna match chuno aur Register Team dabao. Team name, players ke naam aur Free Fire UID bharo. Payment UTR/reference daal kar form submit karo. Request organizer ko milegi; payment check ke baad confirm hogi. Ho gaya—ab chicken dinner ki practice! 😄",
+    team: "Solo mein 1 player, Duo mein 2, aur Squad mein 4 players ki details bharni hoti hain. Match card par jo format hai, wahi chuno. Captain bhi team ke players mein count hota hai. 😎",
+    payment: "Payment section par UPI QR scan karo ya UPI ID copy karo. Tournament ki entry fee pehle check kar lena. Payment ke baad UTR/reference registration form mein daalo. Organizer verify karega, tab registration confirm hogi.",
+    schedule: "BR aur CS match ka schedule tournament cards par dikhega. " + tournaments.map(t => t.type + " " + t.format + ": " + formatSchedule(t.date, t.time)).join(" · ") + " Schedule abhi announce nahi hua ho to organizer se poochho."
+  };
+  buddyLastSpoken = answers[topic] || answers.join;
+  if (buddyReply) buddyReply.textContent = buddyLastSpoken;
+}
+
+$("buddyToggle").onclick = () => {
+  const panel = $("buddyPanel");
+  const isOpening = panel.classList.contains("hidden");
+  panel.classList.toggle("hidden", !isOpening);
+  $("buddyToggle").setAttribute("aria-expanded", String(isOpening));
+};
+$("buddyClose").onclick = () => {
+  $("buddyPanel").classList.add("hidden");
+  $("buddyToggle").setAttribute("aria-expanded", "false");
+};
+document.querySelectorAll("[data-buddy-topic]").forEach(button => {
+  button.onclick = () => answerBuddy(button.dataset.buddyTopic);
+});
+$("buddySpeak").onclick = () => {
+  if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+    if (buddyReply) buddyReply.textContent = buddyLastSpoken + " (Is browser mein bolkar sunane ka option available nahi hai.)";
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(buddyLastSpoken);
+  utterance.lang = "hi-IN";
+  utterance.rate = 0.94;
+  utterance.pitch = 1.12;
+  const hindiVoice = window.speechSynthesis.getVoices().find(voice => voice.lang.toLowerCase().startsWith("hi"));
+  if (hindiVoice) utterance.voice = hindiVoice;
+  window.speechSynthesis.speak(utterance);
+};
+$("buddyGo").onclick = () => {
+  $("buddyPanel").classList.add("hidden");
+  $("buddyToggle").setAttribute("aria-expanded", "false");
+};
+
 loadTournaments();
