@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ram Gaming | Free Fire Tournaments</title>
-  <link rel="stylesheet" href="css/style.css?v=20261114-buddy">
-  <script type="module" src="js/app.js?v=20261114-buddy"></script>
+  <link rel="stylesheet" href="css/style.css?v=20261114-dreki">
+  <script type="module" src="js/app.js?v=20261114-dreki"></script>
 </head>
 <body>
 <header>
@@ -84,28 +84,50 @@
   <p><button id="adminOpen" type="button" class="admin-login-btn">Admin Login</button></p>
 </footer>
 
-<aside class="arena-buddy" id="arenaBuddy" aria-label="Lootu Bhai website guide">
+<aside class="arena-buddy" id="arenaBuddy" aria-label="Free Fire Dreki tournament guide">
   <section class="buddy-panel hidden" id="buddyPanel" aria-labelledby="buddyTitle">
     <div class="buddy-head">
       <div class="buddy-avatar" aria-hidden="true">
-        <svg viewBox="0 0 72 72" role="img"><path d="M13 28 8 12l18 8a23 23 0 0 1 20 0l18-8-5 18a24 24 0 1 1-46-2Z" fill="#ffb52e" stroke="#ffe28a" stroke-width="3"/><path d="M18 38c0-12 8-20 18-20s18 8 18 20v11c0 8-8 13-18 13s-18-5-18-13Z" fill="#243b70" stroke="#8fb6ff" stroke-width="3"/><path d="M20 42c4-5 9-7 16-7s12 2 16 7v9c-5 5-10 7-16 7s-11-2-16-7Z" fill="#ffcc42"/><circle cx="29" cy="39" r="3" fill="#fff"/><circle cx="43" cy="39" r="3" fill="#fff"/><path d="M31 48q5 5 10 0" fill="none" stroke="#482e20" stroke-width="2.5" stroke-linecap="round"/><path d="m21 25 5-12 9 6M51 25l-5-12-9 6" fill="none" stroke="#fff0ab" stroke-width="3" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 72 72" role="img">
+          <path d="M21 48C8 58 7 48 14 41l8-6" fill="none" stroke="#9b37ff" stroke-width="7" stroke-linecap="round"/>
+          <path d="m19 23-5-14 17 9M52 23l7-14-19 10" fill="#f04d37" stroke="#ffb34b" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M15 32c0-13 9-22 21-22s21 9 21 22v14c0 11-9 18-21 18s-21-7-21-18Z" fill="#e34731" stroke="#ffb34b" stroke-width="3"/>
+          <path d="M20 34h13v9H19M39 34h13v9H39" fill="#1b2236" stroke="#ffe174" stroke-width="3"/>
+          <path d="M32 37h8" stroke="#ffd21e" stroke-width="3"/>
+          <path d="M23 49q13 13 26 0l-3 12H26Z" fill="#263b70" stroke="#8bbaff" stroke-width="2"/>
+          <path d="m30 50 6 5 6-5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="18" cy="25" r="3" fill="#ffdc52"/><circle cx="54" cy="25" r="3" fill="#ffdc52"/>
+        </svg>
       </div>
-      <div><h2 id="buddyTitle">Lootu Bhai <span>●</span></h2><p>Site ka chhota guide · Hindi mein</p></div>
+      <div><h2 id="buddyTitle">Dreki Guide <span>●</span></h2><p>BR / CS Drop-zone Guide · हिंदी</p></div>
       <button id="buddyClose" class="buddy-close" type="button" aria-label="Close guide">×</button>
     </div>
-    <div class="buddy-welcome"><b>Arre champion! 👋</b><br>Atak gaye? Neeche poochho, main raasta dikhaata hoon.</div>
-    <div class="buddy-quick" aria-label="Quick help topics">
-      <button type="button" data-buddy-topic="join">Tournament apply kaise karun?</button>
-      <button type="button" data-buddy-topic="team">Solo, Duo ya Squad details?</button>
-      <button type="button" data-buddy-topic="schedule">Date aur time kahan hai?</button>
-      <button type="button" data-buddy-topic="payment">Payment kaise karun?</button>
+    <div class="buddy-welcome"><b>Booyah, champion! 👋</b><br>Lobby se registration submit tak Dreki tumhare saath hai.</div>
+    <div class="buddy-guide-intro" id="buddyGuideIntro">
+      <p>पहली बार आए हो? मैं पूरा registration step-by-step समझाऊँगा।</p>
+      <button id="buddyStartGuide" type="button">🎯 पूरा गाइड शुरू करो</button>
     </div>
-    <div class="buddy-reply" id="buddyReply" role="status" aria-live="polite">Ek topic chuno, phir Lootu bhai gyaan barsayega. 😄</div>
-    <div class="buddy-actions"><button id="buddySpeak" class="buddy-speak" type="button">🔊 Sunao</button><a href="#tournaments" id="buddyGo" class="buddy-go">TOURNAMENTS <b>➜</b></a></div>
-    <p class="buddy-voice-note">Awaaz aapke browser ki Hindi voice se chalegi.</p>
+    <div class="buddy-guide hidden" id="buddyGuide" aria-live="polite">
+      <div class="buddy-progress-head"><span id="buddyStepCounter">STEP 1 / 6</span><span>BOOYAH ROUTE</span></div>
+      <div class="buddy-progress-track"><i id="buddyProgressFill"></i></div>
+      <h3 id="buddyStepTitle"></h3>
+      <div class="buddy-reply" id="buddyReply"></div>
+      <div class="buddy-actions guide-actions">
+        <button id="buddyPrev" class="buddy-speak" type="button">← पीछे</button>
+        <button id="buddySpeak" class="buddy-speak" type="button">🔊 सुनो</button>
+        <button id="buddyNext" class="buddy-speak" type="button">आगे ➜</button>
+      </div>
+      <a id="buddyStepLink" class="buddy-go" href="#home">OPEN SECTION ➜</a>
+    </div>
+    <div class="buddy-quick" aria-label="Quick help topics">
+      <button type="button" data-buddy-topic="team">Solo, Duo, Squad में कितने players?</button>
+      <button type="button" data-buddy-topic="schedule">Tournament कब start है?</button>
+      <button type="button" data-buddy-topic="payment">Entry fee कैसे pay करूँ?</button>
+    </div>
+    <p class="buddy-voice-note">आवाज़ आपके browser की best available Hindi voice से चलेगी।</p>
   </section>
-  <button id="buddyToggle" class="buddy-toggle" type="button" aria-expanded="false" aria-controls="buddyPanel" aria-label="Lootu Bhai se help lein">
-    <span class="buddy-face" aria-hidden="true"><svg viewBox="0 0 72 72"><path d="M13 28 8 12l18 8a23 23 0 0 1 20 0l18-8-5 18a24 24 0 1 1-46-2Z" fill="#ffb52e" stroke="#ffe28a" stroke-width="3"/><path d="M18 38c0-12 8-20 18-20s18 8 18 20v11c0 8-8 13-18 13s-18-5-18-13Z" fill="#243b70" stroke="#8fb6ff" stroke-width="3"/><path d="M20 42c4-5 9-7 16-7s12 2 16 7v9c-5 5-10 7-16 7s-11-2-16-7Z" fill="#ffcc42"/><circle cx="29" cy="39" r="3" fill="#fff"/><circle cx="43" cy="39" r="3" fill="#fff"/><path d="M31 48q5 5 10 0" fill="none" stroke="#482e20" stroke-width="2.5" stroke-linecap="round"/></svg></span><span class="buddy-toggle-label">HELP</span>
+  <button id="buddyToggle" class="buddy-toggle" type="button" aria-expanded="false" aria-controls="buddyPanel" aria-label="Free Fire Dreki guide kholen">
+    <span class="buddy-face" aria-hidden="true"><svg viewBox="0 0 72 72"><path d="M18 25 13 11l17 8M53 25l7-14-18 8" fill="#f04d37" stroke="#ffb34b" stroke-width="3" stroke-linejoin="round"/><path d="M15 34c0-13 9-22 21-22s21 9 21 22v12c0 11-9 18-21 18s-21-7-21-18Z" fill="#e34731" stroke="#ffb34b" stroke-width="3"/><path d="M20 35h13v8H19M39 35h13v8H39" fill="#1b2236" stroke="#ffe174" stroke-width="3"/><path d="M32 38h8" stroke="#ffd21e" stroke-width="3"/><path d="M23 50q13 12 26 0l-3 11H26Z" fill="#263b70" stroke="#8bbaff" stroke-width="2"/><path d="m30 50 6 5 6-5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span><span class="buddy-toggle-label">DREKI</span>
   </button>
 </aside>
 <div class="modal hidden" id="login">
