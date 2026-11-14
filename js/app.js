@@ -490,6 +490,7 @@ function openBuddyGuide() {
 
 function renderBuddyStep() {
   const step = buddySteps[buddyStepIndex];
+  $("buddyNext").disabled = false;
   openBuddyGuide();
   buddyStepCounter.textContent = `STEP ${buddyStepIndex + 1} / ${buddySteps.length}`;
   buddyProgressFill.style.width = `${((buddyStepIndex + 1) / buddySteps.length) * 100}%`;
