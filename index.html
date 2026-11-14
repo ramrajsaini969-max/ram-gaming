@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ram Gaming | Free Fire Tournaments</title>
-  <link rel="stylesheet" href="css/style.css?v=20261114-dreki-v2">
-  <script type="module" src="js/app.js?v=20261114-dreki-v2"></script>
+  <link rel="stylesheet" href="css/style.css?v=20261114-panda">
+  <script type="module" src="js/app.js?v=20261114-panda"></script>
 </head>
 <body>
 <header>
@@ -84,25 +84,16 @@
   <p><button id="adminOpen" type="button" class="admin-login-btn">Admin Login</button></p>
 </footer>
 
-<aside class="arena-buddy" id="arenaBuddy" aria-label="Free Fire Dreki tournament guide">
+<aside class="arena-buddy" id="arenaBuddy" aria-label="Free Fire Detective Panda tournament guide">
   <section class="buddy-panel hidden" id="buddyPanel" aria-labelledby="buddyTitle">
     <div class="buddy-head">
       <div class="buddy-avatar" aria-hidden="true">
-        <svg viewBox="0 0 72 72" role="img">
-          <path d="M21 48C8 58 7 48 14 41l8-6" fill="none" stroke="#9b37ff" stroke-width="7" stroke-linecap="round"/>
-          <path d="m19 23-5-14 17 9M52 23l7-14-19 10" fill="#f04d37" stroke="#ffb34b" stroke-width="3" stroke-linejoin="round"/>
-          <path d="M15 32c0-13 9-22 21-22s21 9 21 22v14c0 11-9 18-21 18s-21-7-21-18Z" fill="#e34731" stroke="#ffb34b" stroke-width="3"/>
-          <path d="M20 34h13v9H19M39 34h13v9H39" fill="#1b2236" stroke="#ffe174" stroke-width="3"/>
-          <path d="M32 37h8" stroke="#ffd21e" stroke-width="3"/>
-          <path d="M23 49q13 13 26 0l-3 12H26Z" fill="#263b70" stroke="#8bbaff" stroke-width="2"/>
-          <path d="m30 50 6 5 6-5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-          <circle cx="18" cy="25" r="3" fill="#ffdc52"/><circle cx="54" cy="25" r="3" fill="#ffdc52"/>
-        </svg>
+        <img src="https://www.citypng.com/public/uploads/preview/detective-panda-free-fire-pet-character-free-png-11644279867ats3s9vvdy.png" alt="Free Fire Detective Panda pet" loading="eager" referrerpolicy="no-referrer">
       </div>
-      <div><h2 id="buddyTitle">Dreki Guide <span>●</span></h2><p>BR / CS Drop-zone Guide · हिंदी</p></div>
+      <div><h2 id="buddyTitle">Detective Panda <span>●</span></h2><p>Free Fire tournament guide · हिंदी</p></div>
       <button id="buddyClose" class="buddy-close" type="button" aria-label="Close guide">×</button>
     </div>
-    <div class="buddy-welcome"><b>Booyah, champion! 👋</b><br>Lobby se registration submit tak Dreki tumhare saath hai.</div>
+    <div class="buddy-welcome"><b>Booyah, champion! 👋</b><br>Lobby se registration submit tak Panda tumhare saath hai.</div>
     <div class="buddy-guide-intro" id="buddyGuideIntro">
       <p>पहली बार आए हो? मैं पूरा registration step-by-step समझाऊँगा।</p>
       <button id="buddyStartGuide" type="button">🎯 पूरा गाइड शुरू करो</button>
@@ -124,10 +115,10 @@
       <button type="button" data-buddy-topic="schedule">Tournament कब start है?</button>
       <button type="button" data-buddy-topic="payment">Entry fee कैसे pay करूँ?</button>
     </div>
-    <p class="buddy-voice-note">आवाज़ आपके browser की best available Hindi voice से चलेगी।</p>
+    <label class="buddy-voice-select" for="buddyVoice">हिंदी आवाज़ <select id="buddyVoice" aria-label="Hindi voice"><option value="">Browser की best Hindi voice</option></select></label><p class="buddy-voice-note" id="buddyVoiceNote">Voice playback सिर्फ Sunao दबाने पर चलेगा।</p>
   </section>
-  <button id="buddyToggle" class="buddy-toggle" type="button" aria-expanded="false" aria-controls="buddyPanel" aria-label="Free Fire Dreki guide kholen">
-    <span class="buddy-face" aria-hidden="true"><svg viewBox="0 0 72 72"><path d="M18 25 13 11l17 8M53 25l7-14-18 8" fill="#f04d37" stroke="#ffb34b" stroke-width="3" stroke-linejoin="round"/><path d="M15 34c0-13 9-22 21-22s21 9 21 22v12c0 11-9 18-21 18s-21-7-21-18Z" fill="#e34731" stroke="#ffb34b" stroke-width="3"/><path d="M20 35h13v8H19M39 35h13v8H39" fill="#1b2236" stroke="#ffe174" stroke-width="3"/><path d="M32 38h8" stroke="#ffd21e" stroke-width="3"/><path d="M23 50q13 12 26 0l-3 11H26Z" fill="#263b70" stroke="#8bbaff" stroke-width="2"/><path d="m30 50 6 5 6-5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span><span class="buddy-toggle-label">DREKI</span>
+  <button id="buddyToggle" class="buddy-toggle" type="button" aria-expanded="false" aria-controls="buddyPanel" aria-label="Free Fire Detective Panda guide kholen">
+    <span class="buddy-face" aria-hidden="true"><img src="https://www.citypng.com/public/uploads/preview/detective-panda-free-fire-pet-character-free-png-11644279867ats3s9vvdy.png" alt="" loading="eager" referrerpolicy="no-referrer"></span><span class="buddy-toggle-label">PANDA</span>
   </button>
 </aside>
 <div class="modal hidden" id="login">
