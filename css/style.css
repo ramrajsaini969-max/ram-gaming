@@ -61,3 +61,22 @@ input:focus,textarea:focus,select:focus{outline:2px solid #ffc928aa;outline-offs
 @keyframes buddy-arrive{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:500px){.arena-buddy{right:13px;bottom:14px}.buddy-toggle{width:62px;height:62px}.buddy-face{width:50px;height:50px}.buddy-panel{max-height:calc(100vh - 98px);padding:13px}.buddy-quick button{font-size:.68rem}}
 @media(prefers-reduced-motion:reduce){.buddy-toggle{animation:none}.buddy-panel{animation:none}}
+
+/* Free Fire inspired dragon-pet HUD and guided route. */
+.buddy-panel{border-color:#ff603caa;background:linear-gradient(145deg,#201018fa 0%,#100f1afa 48%,#090a12fc 100%);box-shadow:0 18px 60px #000d,0 0 28px #ff552e44,0 0 54px #872dff22}
+.buddy-panel:before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,#ffd21e,#ff5335,#a536ff,#32a8ff)}
+.buddy-head{position:relative}.buddy-avatar{border-color:#ff6743;background:radial-gradient(circle at 50% 25%,#422026,#10121e);box-shadow:0 0 16px #ff553544}.buddy-head h2{font-family:var(--font-display);font-size:1.55rem;letter-spacing:.04em;text-transform:uppercase}.buddy-head h2 span{color:#5cff9d}.buddy-head p{font-size:.66rem;letter-spacing:.03em}
+.buddy-welcome{border-color:#ff9b3744;background:linear-gradient(100deg,#ff6a1718,#9c39ff12);color:#e4dce8}.buddy-welcome b{color:#ffd21e}
+.buddy-guide-intro{margin-top:11px;padding:12px;border:1px solid #ffffff18;border-radius:11px;background:#090a11}.buddy-guide-intro p{margin:0 0 10px;color:#e6dfeb;font-size:.79rem}.buddy-guide-intro button{width:100%;padding:10px 12px;border-color:#ff603c;background:linear-gradient(100deg,#ff7b26,#ffcb25);color:#171019;font:900 .9rem var(--font-display);letter-spacing:.04em}
+.buddy-guide{margin-top:11px;padding:12px;border:1px solid #ffffff1b;border-radius:11px;background:linear-gradient(145deg,#11111a,#0a0a10)}
+.buddy-progress-head{display:flex;justify-content:space-between;gap:8px;color:#d6c7dd;font:800 .61rem var(--font-display);letter-spacing:.1em}.buddy-progress-head span:first-child{color:#ffd21e}
+.buddy-progress-track{height:5px;margin:7px 0 11px;overflow:hidden;border-radius:99px;background:#ffffff16}.buddy-progress-track i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#ffd21e,#ff5638,#a63cff);box-shadow:0 0 10px #ff633e88;transition:width .3s ease}
+.buddy-guide h3{margin:0 0 8px;color:#fff;font:900 1.28rem/1 var(--font-display);letter-spacing:.04em}
+.buddy-reply{min-height:70px;max-height:210px;border-color:#ffffff17;background:#08090f;color:#f0e9f4;font-size:.77rem;line-height:1.6}
+.buddy-actions.guide-actions{display:grid;grid-template-columns:.8fr 1fr .8fr;gap:6px;margin-top:9px}.buddy-actions.guide-actions button{min-height:38px;padding:7px 5px;border:1px solid #ff793b66;border-radius:8px;background:linear-gradient(145deg,#28171d,#17111a);color:#f4e9ef;font:800 .76rem var(--font-body);letter-spacing:0;box-shadow:none}.buddy-actions.guide-actions button:nth-child(2){border-color:#ffd21e;background:linear-gradient(100deg,#ffd21e,#ff9f21);color:#171019}.buddy-actions.guide-actions button:disabled{opacity:.38;cursor:not-allowed;transform:none}
+.buddy-step-link{display:block;margin-top:8px;padding:9px;border:1px solid #a23cff88;border-radius:8px;background:#a536ff12;color:#eddbff;text-align:center;font:900 .74rem var(--font-display);letter-spacing:.09em}
+.buddy-quick{margin-top:11px;padding-top:10px;border-top:1px solid #ffffff18}.buddy-quick:before{content:"QUICK DROP HELP";display:block;margin:0 0 7px;color:#a9a0b4;font:800 .58rem var(--font-display);letter-spacing:.13em}.buddy-quick button{min-height:40px;border-color:#514164;background:linear-gradient(145deg,#1b1724,#11111a);font-size:.68rem}.buddy-quick button:hover{border-color:#ff6545;background:#2c1721}
+.buddy-voice-note{color:#a59bac}
+.buddy-toggle{border-color:#ff623e;background:radial-gradient(circle at 35% 25%,#41202a,#11111a 72%);box-shadow:0 0 0 5px #ff57301d,0 0 25px #ff563c66,0 0 32px #852fff44}
+.buddy-toggle-label{right:48px;border-color:#ff714988;background:#1b1119;color:#ffd21e}
+@media(max-width:500px){.buddy-panel{border-color:#ff6743aa}.buddy-guide h3{font-size:1.17rem}.buddy-actions.guide-actions button{font-size:.68rem}}
