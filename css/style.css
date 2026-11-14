@@ -93,3 +93,13 @@ input:focus,textarea:focus,select:focus{outline:2px solid #ffc928aa;outline-offs
 .buddy-voice-select select{max-width:63%;padding:6px 8px;border:1px solid #5b465f;border-radius:7px;background:#17111c;color:#fff;font:600 .68rem system-ui,sans-serif}
 @media(max-width:500px){.buddy-toggle{width:78px;height:80px;border-radius:20px}.buddy-face{width:66px;height:70px}.buddy-toggle-label{right:58px}.buddy-voice-select select{max-width:60%}}
 @media(prefers-reduced-motion:reduce){.buddy-face img{filter:drop-shadow(0 1px 2px #0008)}}
+
+
+/* Show only the transparent Panda artwork in its floating launcher. */
+.arena-buddy .buddy-toggle{width:104px;height:126px;padding:0;display:block;overflow:visible;border:0!important;border-radius:0!important;background:transparent!important;box-shadow:none!important;}
+.arena-buddy .buddy-toggle:hover,.arena-buddy .buddy-toggle:focus-visible{background:transparent!important;box-shadow:none!important;}
+.arena-buddy .buddy-face{width:100%;height:100%;display:block;overflow:visible;background:transparent!important;}
+.arena-buddy .buddy-face img{width:100%;height:100%;object-fit:contain;object-position:center bottom;background:transparent!important;filter:drop-shadow(0 5px 8px #0009);}
+.arena-buddy .buddy-toggle-label{display:none!important;}
+.arena-buddy .buddy-avatar,.arena-buddy .buddy-avatar img{background:transparent!important;}
+@media(max-width:500px){.arena-buddy .buddy-toggle{width:88px;height:108px;}}
