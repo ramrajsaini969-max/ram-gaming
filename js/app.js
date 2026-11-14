@@ -83,6 +83,7 @@ function buildPlayerFields(tournament) {
 }
 
 async function loadTournaments() {
+  renderTournaments();
   try {
     const snap = await getDoc(doc(db, "site", "tournaments"));
     if (snap.exists() && Array.isArray(snap.data().items) && snap.data().items.length) {
