@@ -118,6 +118,17 @@ async function loadTournaments() {
 function renderTournaments() {
   const cards = $("cards");
   cards.replaceChildren();
+  const featured = tournaments.find(item => item.status === "Open") || tournaments[0];
+  if (featured) {
+    const featuredTitle = $("featuredTitle");
+    const featuredFormat = $("featuredFormat");
+    const featuredSchedule = $("featuredSchedule");
+    const featuredPrize = $("featuredPrize");
+    if (featuredTitle) featuredTitle.textContent = featured.title;
+    if (featuredFormat) featuredFormat.textContent = `${featured.type} · ${String(featured.format).toUpperCase()}`;
+    if (featuredSchedule) featuredSchedule.textContent = formatSchedule(featured.date, featured.time);
+    if (featuredPrize) featuredPrize.textContent = featured.prize || "Prize details announced in the group";
+  }
   tournaments.forEach(t => {
     const article = document.createElement("article");
     article.className = "tournament";
