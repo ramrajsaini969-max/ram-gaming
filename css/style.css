@@ -103,3 +103,5 @@ input:focus,textarea:focus,select:focus{outline:2px solid #ffc928aa;outline-offs
 .arena-buddy .buddy-toggle-label{display:none!important;}
 .arena-buddy .buddy-avatar,.arena-buddy .buddy-avatar img{background:transparent!important;}
 @media(max-width:500px){.arena-buddy .buddy-toggle{width:88px;height:108px;}}
+
+.contact-socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.contact-socials .btn{display:inline-flex;align-items:center;justify-content:center}@media(max-width:500px){.contact-socials{flex-direction:column}.contact-socials .btn{width:100%}}
