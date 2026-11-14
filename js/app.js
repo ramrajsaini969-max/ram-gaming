@@ -436,21 +436,110 @@ $("copy").onclick = async () => {
 
 
 const buddyReply = $("buddyReply");
-let buddyLastSpoken = "Arre champion! Tournament card chuno, register karo, aur payment reference daal ke form submit karo.";
+const buddyGuide = $("buddyGuide");
+const buddyGuideIntro = $("buddyGuideIntro");
+const buddyStepTitle = $("buddyStepTitle");
+const buddyStepCounter = $("buddyStepCounter");
+const buddyProgressFill = $("buddyProgressFill");
+const buddyStepLink = $("buddyStepLink");
+let buddyStepIndex = -1;
+let buddyLastSpoken = "Booyah, champion! Dreki tumhe Google login se lekar registration confirmation tak step by step guide karega.";
 
-function answerBuddy(topic) {
-  const target = topic === "payment" ? "#payment" : "#tournaments";
-  const link = $("buddyGo");
-  if (link) link.href = target;
+const buddySteps = [
+  {
+    title: "STEP 1 · LOBBY LOGIN",
+    text: "सबसे पहले Google Login दबाकर अपने Google खाते से sign in करो। बिना login registration submit नहीं होगा। Login हो जाए तो lobby में वापस आकर tournament चुनो।",
+    link: "#home", label: "GOOGLE LOGIN ↗", login: true
+  },
+  {
+    title: "STEP 2 · MATCH CHUNO",
+    text: "Tournament cards में BR या CS चुनो। Start date, time, format, entry fee और prize ध्यान से देख लो। अगर date या time announce नहीं हुआ है, तो organizer से पूछ लेना।",
+    link: "#tournaments", label: "MATCH CARDS ↗"
+  },
+  {
+    title: "STEP 3 · TEAM SET KARO",
+    text: "Register Team दबाओ और team name भरो। फिर match का format check करो: Solo में 1, Duo में 2, और Squad में 4 players की details लगेंगी।",
+    link: "#tournaments", label: "FORMAT DEKHO ↗"
+  },
+  {
+    title: "STEP 4 · PLAYER UID BHARO",
+    text: "हर player का Free Fire name और सही UID भरो। Squad है तो चारों players डालो—तीन लेकर चौथे को lobby में मत ढूँढते रहना! 😄 Submit से पहले सब UID दोबारा check कर लो।",
+    link: "#tournaments", label: "REGISTRATION FORM ↗"
+  },
+  {
+    title: "STEP 5 · ENTRY FEE PAY",
+    text: "Payment section में official QR या UPI ID मिलेगा। चुने हुए tournament की entry fee ही pay करो। UPI PIN या OTP कभी किसी से share मत करना।",
+    link: "#payment", label: "PAYMENT SECTION ↗"
+  },
+  {
+    title: "STEP 6 · SUBMIT & CONFIRM",
+    text: "Payment का UTR/reference form में भरो, confirmation checkbox tick करो और Submit दबाओ। पहले request Pending verification रहती है; organizer payment verify करके registration confirm करेगा। Room ID या match timing के लिए organizer के WhatsApp से जानकारी लो।",
+    link: "#contact", label: "ORGANIZER CONTACT ↗"
+  }
+];
 
-  const answers = {
-    join: "Pehle Google Login karo. Phir Tournaments mein apna match chuno aur Register Team dabao. Team name, players ke naam aur Free Fire UID bharo. Payment UTR/reference daal kar form submit karo. Request organizer ko milegi; payment check ke baad confirm hogi. Ho gaya—ab chicken dinner ki practice! 😄",
-    team: "Solo mein 1 player, Duo mein 2, aur Squad mein 4 players ki details bharni hoti hain. Match card par jo format hai, wahi chuno. Captain bhi team ke players mein count hota hai. 😎",
-    payment: "Payment section par UPI QR scan karo ya UPI ID copy karo. Tournament ki entry fee pehle check kar lena. Payment ke baad UTR/reference registration form mein daalo. Organizer verify karega, tab registration confirm hogi.",
-    schedule: "BR aur CS match ka schedule tournament cards par dikhega. " + tournaments.map(t => t.type + " " + t.format + ": " + formatSchedule(t.date, t.time)).join(" · ") + " Schedule abhi announce nahi hua ho to organizer se poochho."
+function setBuddyMessage(message) {
+  buddyLastSpoken = message;
+  if (buddyReply) buddyReply.textContent = message;
+}
+
+function openBuddyGuide() {
+  buddyGuideIntro.classList.add("hidden");
+  buddyGuide.classList.remove("hidden");
+}
+
+function renderBuddyStep() {
+  const step = buddySteps[buddyStepIndex];
+  openBuddyGuide();
+  buddyStepCounter.textContent = `STEP ${buddyStepIndex + 1} / ${buddySteps.length}`;
+  buddyProgressFill.style.width = `${((buddyStepIndex + 1) / buddySteps.length) * 100}%`;
+  buddyStepTitle.textContent = step.title;
+  setBuddyMessage(step.text);
+  buddyStepLink.textContent = step.label;
+  buddyStepLink.href = step.link;
+  $("buddyPrev").disabled = buddyStepIndex === 0;
+  $("buddyNext").textContent = buddyStepIndex === buddySteps.length - 1 ? "DONE ✓" : "आगे ➜";
+}
+
+function startBuddyGuide() {
+  buddyStepIndex = 0;
+  renderBuddyStep();
+}
+
+function showBuddyQuickHelp(topic) {
+  openBuddyGuide();
+  buddyStepIndex = -1;
+  buddyStepTitle.textContent = "DREKI KA QUICK DROP";
+  buddyStepCounter.textContent = "QUICK HELP";
+  buddyProgressFill.style.width = "0%";
+  $("buddyPrev").disabled = false;
+  $("buddyPrev").textContent = "← वापस";
+  $("buddyNext").textContent = "पूरा गाइड ➜";
+  const quickAnswers = {
+    team: "Solo में 1 player, Duo में 2 और Squad में 4 players की details भरनी हैं। Team captain भी player count में शामिल है। Format tournament card पर देखो।",
+    schedule: (() => {
+      const scheduled = tournaments.filter(t => t.date && t.time)
+        .map(t => `${t.type} ${t.format}: ${formatSchedule(t.date, t.time)}`);
+      return scheduled.length
+        ? "Tournament cards पर schedule देखो: " + scheduled.join(" · ")
+        : "BR और CS की start date/time tournament card पर दिखेगी। अभी announce नहीं हुई है—organizer से confirm कर लो।";
+    })(),
+    payment: "Tournament card पर entry fee check करो। फिर Payment section से QR scan या UPI ID copy करो। Payment के बाद UTR/reference registration form में भरो। UPI PIN और OTP किसी को मत बताना."
   };
-  buddyLastSpoken = answers[topic] || answers.join;
-  if (buddyReply) buddyReply.textContent = buddyLastSpoken;
+  setBuddyMessage(quickAnswers[topic] || quickAnswers.team);
+  buddyStepLink.textContent = topic === "payment" ? "PAYMENT SECTION ↗" : "TOURNAMENTS ↗";
+  buddyStepLink.href = topic === "payment" ? "#payment" : "#tournaments";
+}
+
+function finishBuddyGuide() {
+  buddyStepCounter.textContent = "BOOYAH ROUTE COMPLETE";
+  buddyStepTitle.textContent = "🎉 AB LOBBY TUMHARI!";
+  buddyProgressFill.style.width = "100%";
+  setBuddyMessage("Guide complete! Registration request submit hone ke baad organizer ke payment verification ka wait karo. Koi doubt ho to WhatsApp par organizer se poochho.");
+  buddyStepLink.href = "#contact";
+  buddyStepLink.textContent = "CONTACT ORGANIZER ↗";
+  $("buddyNext").disabled = true;
+  $("buddyPrev").disabled = true;
 }
 
 $("buddyToggle").onclick = () => {
@@ -463,22 +552,64 @@ $("buddyClose").onclick = () => {
   $("buddyPanel").classList.add("hidden");
   $("buddyToggle").setAttribute("aria-expanded", "false");
 };
+$("buddyStartGuide").onclick = startBuddyGuide;
 document.querySelectorAll("[data-buddy-topic]").forEach(button => {
-  button.onclick = () => answerBuddy(button.dataset.buddyTopic);
+  button.onclick = () => showBuddyQuickHelp(button.dataset.buddyTopic);
 });
-$("buddySpeak").onclick = () => {
-  if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
-    if (buddyReply) buddyReply.textContent = buddyLastSpoken + " (Is browser mein bolkar sunane ka option available nahi hai.)";
+$("buddyPrev").onclick = () => {
+  if (buddyStepIndex < 0) {
+    buddyGuide.classList.add("hidden");
+    buddyGuideIntro.classList.remove("hidden");
     return;
   }
-  window.speechSynthesis.cancel();
+  if (buddyStepIndex > 0) {
+    buddyStepIndex -= 1;
+    $("buddyNext").disabled = false;
+    renderBuddyStep();
+  }
+};
+$("buddyNext").onclick = () => {
+  if (buddyStepIndex < 0) return startBuddyGuide();
+  if (buddyStepIndex < buddySteps.length - 1) {
+    buddyStepIndex += 1;
+    renderBuddyStep();
+  } else {
+    finishBuddyGuide();
+  }
+};
+$("buddyStepLink").onclick = event => {
+  const currentStep = buddySteps[buddyStepIndex];
+  if (currentStep && currentStep.login) {
+    event.preventDefault();
+    $("buddyPanel").classList.add("hidden");
+    $("buddyToggle").setAttribute("aria-expanded", "false");
+    show("login");
+  } else {
+    $("buddyPanel").classList.add("hidden");
+    $("buddyToggle").setAttribute("aria-expanded", "false");
+  }
+};
+
+$("buddySpeak").onclick = () => {
+  if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+    buddyReply.textContent = buddyLastSpoken + " इस browser में voice playback उपलब्ध नहीं है।";
+    return;
+  }
+  const synth = window.speechSynthesis;
+  synth.cancel();
   const utterance = new SpeechSynthesisUtterance(buddyLastSpoken);
   utterance.lang = "hi-IN";
-  utterance.rate = 0.94;
-  utterance.pitch = 1.12;
-  const hindiVoice = window.speechSynthesis.getVoices().find(voice => voice.lang.toLowerCase().startsWith("hi"));
-  if (hindiVoice) utterance.voice = hindiVoice;
-  window.speechSynthesis.speak(utterance);
+  utterance.rate = 0.88;
+  utterance.pitch = 1.02;
+  utterance.volume = 1;
+  const hindiVoices = synth.getVoices().filter(voice => voice.lang.toLowerCase().startsWith("hi"));
+  const preferredVoice = hindiVoices.find(voice => /google|natural|neural/i.test(voice.name)) || hindiVoices[0];
+  if (preferredVoice) utterance.voice = preferredVoice;
+  const speakButton = $("buddySpeak");
+  utterance.onstart = () => { speakButton.textContent = "🔊 बोल रहा हूँ…"; };
+  utterance.onend = () => { speakButton.textContent = "🔊 सुनो"; };
+  utterance.onerror = () => { speakButton.textContent = "🔊 सुनो"; };
+  synth.speak(utterance);
 };
 $("buddyGo").onclick = () => {
   $("buddyPanel").classList.add("hidden");
