@@ -591,21 +591,66 @@ $("buddyStepLink").onclick = event => {
   }
 };
 
+const buddyVoiceSelect = $("buddyVoice");
+const buddyVoiceNote = $("buddyVoiceNote");
+let buddyAvailableHindiVoices = [];
+
+function loadBuddyHindiVoices() {
+  if (!("speechSynthesis" in window)) {
+    buddyVoiceSelect.hidden = true;
+    buddyVoiceNote.textContent = "Is browser mein voice playback available nahi hai.";
+    return;
+  }
+  const voices = window.speechSynthesis.getVoices();
+  buddyAvailableHindiVoices = voices.filter(voice => voice.lang.toLowerCase().startsWith("hi"));
+  buddyVoiceSelect.replaceChildren();
+  if (!buddyAvailableHindiVoices.length) {
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = "Browser की default voice";
+    buddyVoiceSelect.append(option);
+    buddyVoiceNote.textContent = "Hindi voice browser ke installed voices par depend karti hai.";
+    return;
+  }
+  buddyAvailableHindiVoices.forEach((voice, index) => {
+    const option = document.createElement("option");
+    option.value = String(index);
+    option.textContent = voice.name + " · " + voice.lang;
+    buddyVoiceSelect.append(option);
+  });
+  const bestIndex = buddyAvailableHindiVoices.findIndex(voice =>
+    /google|natural|neural|premium|kalpana|swara|madhur/i.test(voice.name));
+  buddyVoiceSelect.value = String(bestIndex >= 0 ? bestIndex : 0);
+  buddyVoiceNote.textContent = "Voice yahin browser mein chalegi; Sunao dabakar suno.";
+}
+
+loadBuddyHindiVoices();
+if ("speechSynthesis" in window) {
+  window.speechSynthesis.addEventListener("voiceschanged", loadBuddyHindiVoices);
+}
+
 $("buddySpeak").onclick = () => {
   if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
-    buddyReply.textContent = buddyLastSpoken + " इस browser में voice playback उपलब्ध नहीं है।";
+    buddyVoiceNote.textContent = "Is browser mein voice playback available nahi hai.";
     return;
   }
   const synth = window.speechSynthesis;
   synth.cancel();
-  const utterance = new SpeechSynthesisUtterance(buddyLastSpoken);
+  const spokenText = [...buddyLastSpoken]
+    .filter(char => {
+      const code = char.codePointAt(0);
+      return !(code >= 0x1F300 && code <= 0x1FAFF) && !(code >= 0x2600 && code <= 0x27BF);
+    })
+    .join("");
+  const utterance = new SpeechSynthesisUtterance(spokenText);
   utterance.lang = "hi-IN";
-  utterance.rate = 0.88;
-  utterance.pitch = 1.02;
+  utterance.rate = 0.96;
+  utterance.pitch = 1.0;
   utterance.volume = 1;
-  const hindiVoices = synth.getVoices().filter(voice => voice.lang.toLowerCase().startsWith("hi"));
-  const preferredVoice = hindiVoices.find(voice => /google|natural|neural/i.test(voice.name)) || hindiVoices[0];
-  if (preferredVoice) utterance.voice = preferredVoice;
+  const selectedIndex = Number(buddyVoiceSelect.value);
+  if (Number.isInteger(selectedIndex) && buddyAvailableHindiVoices[selectedIndex]) {
+    utterance.voice = buddyAvailableHindiVoices[selectedIndex];
+  }
   const speakButton = $("buddySpeak");
   utterance.onstart = () => { speakButton.textContent = "🔊 बोल रहा हूँ…"; };
   utterance.onend = () => { speakButton.textContent = "🔊 सुनो"; };
