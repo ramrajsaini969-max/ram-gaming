@@ -1,74 +1,124 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090910">
-  <title>Ram Gaming | Free Fire Tournament Arena</title>
-  <meta name="description" content="Join Ram Gaming Free Fire Battle Royale and Clash Squad tournaments. Compete, win, and rise through the arena.">
-  <link rel="stylesheet" href="css/style.css?v=20261114-neon">
-  <script type="module" src="js/app.js?v=20261114-dashboard"></script>
+  <title>Ram Gaming | Free Fire Tournaments</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/app.js?v=20261111-noclock"></script>
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="#home" aria-label="Ram Gaming home"><span class="brand-crown">♛</span><span>RAM <b>GAMING</b><small>FREE FIRE ARENA</small></span></a>
-  <button id="menu" type="button" aria-label="Toggle menu" aria-expanded="false">☰</button>
-  <nav id="nav" aria-label="Main navigation">
-    <a class="nav-home" href="#home"><span>⌂</span> Home</a>
-    <a href="#tournaments"><span>🏆</span> Tournaments⌄</a>
-    <a href="#how"><span>ⓘ</span> How to Join</a>
-    <a href="#payment"><span>▣</span> Payment</a>
-    <a href="#leaderboard"><span>♜</span> Leaderboard</a>
-    <a href="#contact"><span>♧</span> Contact</a>
-    <button id="loginOpen" type="button" class="google-nav"><span class="google-mark">G</span> Google Login</button>
+<header>
+  <a class="brand" href="#home">♛ RAM <b>GAMING</b></a>
+  <button id="menu" type="button" aria-label="Toggle menu">☰</button>
+  <nav id="nav">
+    <a href="#tournaments">Tournaments</a>
+    <a href="#how">How to Join</a>
+    <a href="#payment">Payment</a>
+    <a href="#contact">Contact</a>
+    <button id="loginOpen" type="button">Google Login</button>
   </nav>
 </header>
-<aside class="quick-rail" aria-label="Quick links">
-  <a href="#tournaments" aria-label="Tournaments">🏆</a><a href="#how" aria-label="How to join">⚡</a><a href="#payment" aria-label="Payment">₹</a><a href="https://wa.me/919376090619" target="_blank" rel="noopener" aria-label="WhatsApp">◉</a>
-</aside>
-<main>
+
 <section class="hero" id="home">
-  <div class="hero-backdrop" aria-hidden="true"><span class="energy energy-one"></span><span class="energy energy-two"></span><span class="hero-grid"></span></div>
-  <div class="hero-copy">
-    <p class="eyebrow"><span class="live-dot"></span> INDIA'S COMMUNITY ARENA</p>
-    <h1>FREE FIRE<br><em>TOURNAMENT</em></h1>
-    <p class="hero-motto">PLAY <i>•</i> COMPETE <i>•</i> WIN</p>
-    <p class="hero-description">Your next clutch moment starts here. Join the battle, bring your squad, and play for the win.</p>
-    <a class="btn hero-cta" href="#tournaments"><span>▶</span> EXPLORE TOURNAMENTS <b>➜</b></a>
-  </div>
-  <aside class="featured-match">
-    <p class="featured-kicker">✦ NEXT TOURNAMENT</p><div class="featured-emblem" aria-hidden="true">♛</div>
-    <h2 id="featuredTitle">BR Squad Tournament</h2><p id="featuredFormat" class="featured-format">BR · SQUAD</p>
-    <div class="featured-line"><span>◷</span><span id="featuredSchedule">Start date and time to be announced</span></div>
-    <div class="featured-prize"><span>🏆</span><div><strong id="featuredPrize">Prize details announced in the group</strong><small>PRIZE DETAILS</small></div></div>
-    <a class="btn featured-cta" href="#tournaments">REGISTER NOW <span>➜</span></a>
-    <small class="featured-foot">OFFICIAL RAM GAMING COMMUNITY MATCH</small>
-  </aside>
-  <div class="hero-bottom"><span>♛ &nbsp; RAM GAMING</span><span class="hero-bottom-line"></span><span>DROP IN. FIGHT HARD. RISE UP.</span></div>
-</section>
-
-<section class="arena-layout section-shell" id="tournaments">
-  <div class="section-heading"><div><p class="eyebrow">FIND YOUR NEXT MATCH</p><h2>UPCOMING <em>TOURNAMENTS</em></h2></div><span class="section-side-note">SCHEDULE · ENTRY · PRIZE</span></div>
-  <div class="arena-grid">
-    <a class="live-card neon-frame" href="#tournaments-list"><div class="live-art"><span class="live-badge"><i></i> REGISTRATION OPEN</span><div class="live-glyph">⚔</div><span class="live-orbit"></span></div><div class="live-info"><p class="eyebrow">CHOOSE YOUR BATTLE</p><h3>BR <em>&</em> CS</h3><p>Solo, Duo and Squad formats</p><span class="text-link">VIEW MATCHES <b>➜</b></span></div></a>
-    <div class="tournament-zone" id="tournaments-list"><div class="panel-heading"><h3><span>★</span> MATCH BOARD</h3><a href="#tournaments-list">VIEW ALL <b>➜</b></a></div><div id="cards" class="cards"></div></div>
-    <aside class="leaderboard neon-frame" id="leaderboard"><div class="panel-heading"><h3><span>♜</span> LEADERBOARD</h3><span class="season-tag">SEASON 01</span></div><div class="leaderboard-empty"><div class="leaderboard-cup">🏆</div><p class="eyebrow">THE ARENA IS OPEN</p><h3>Your name belongs here.</h3><p>Rankings will appear after match results are verified by the organizer.</p><a href="#tournaments" class="text-link">JOIN A TOURNAMENT <b>➜</b></a></div><div class="leaderboard-foot"><span class="live-dot"></span> RESULTS VERIFIED BY ORGANIZER</div></aside>
+  <div>
+    <p class="eyebrow">WELCOME TO</p>
+    <h1>RAM <em>GAMING</em></h1>
+    <h2>Free Fire Battle Royale & Clash Squad Tournaments</h2>
+    <p>Play. Compete. Win.</p>
+    <a class="btn" href="#tournaments">Explore Tournaments ↓</a>
   </div>
 </section>
-<section class="organizer-strip"><img src="assets/ramraj-photo.jpg" alt="Tournament organizer Ramraj Saini"><div><small>TOURNAMENT ORGANIZER</small><strong>Ramraj Saini</strong><span>Community matches · Clear rules · Fair play</span></div><a class="btn outline" href="#contact">CONTACT ORGANIZER <b>➜</b></a><div class="strip-divider"></div><span class="strip-message">Join the community and show your skills.</span></section>
 
-<section class="section-shell how-section" id="how"><div class="section-heading"><div><p class="eyebrow">GET READY FOR DROP-IN</p><h2>HOW TO <em>JOIN</em></h2></div><span class="section-side-note">FOUR STEPS TO THE ARENA</span></div><div class="steps">
-  <article><b>01</b><span class="step-icon">◎</span><h3>Google Login</h3><p>Login securely with your Google account.</p></article><article><b>02</b><span class="step-icon">⌖</span><h3>Choose Tournament</h3><p>Check the format, date, time, entry fee and prize.</p></article><article><b>03</b><span class="step-icon">₹</span><h3>Pay Entry Fee</h3><p>Scan the official QR and keep your payment reference.</p></article><article><b>04</b><span class="step-icon">⚔</span><h3>Submit Team</h3><p>Enter all players' details and payment reference.</p></article>
-</div><p class="notice">Payment is checked by the organizer. Submitting a reference does not confirm payment.</p></section>
+<section class="owner">
+  <img src="assets/ramraj-photo.jpg" alt="Tournament organizer">
+  <div>
+    <p class="eyebrow">TOURNAMENT ORGANIZER</p>
+    <h2>Ramraj Saini</h2>
+    <p>Community tournaments, clear rules and fair play.</p>
+    <a class="btn outline" href="#contact">Contact Organizer</a>
+  </div>
+</section>
 
-<section class="section-shell payment-section" id="payment"><div class="section-heading"><div><p class="eyebrow">SECURE YOUR PLACE</p><h2>ENTRY <em>PAYMENT</em></h2></div></div><div class="payment"><div class="payment-copy"><p>Confirm the tournament and amount before paying. Keep your UTR/reference for registration.</p><div class="upi"><span>UPI ID</span><strong>9376090619@fam</strong><button id="copy" type="button">COPY UPI ID</button></div><p class="account-details">Account name: <b>Ramraj Saini</b><br>Mobile: <b>9376090619</b></p></div><div class="qr"><img src="assets/payment-qr.jpg" alt="UPI payment QR"><p>SCAN TO PAY WITH ANY UPI APP</p></div></div></section>
+<section class="section" id="tournaments">
+  <h2>UPCOMING <em>TOURNAMENTS</em></h2>
+  <p>Choose a tournament and check its latest details.</p>
+  <div id="cards" class="cards"></div>
+</section>
 
-<section class="section-shell contact-section" id="contact"><div><p class="eyebrow">NEED HELP WITH A MATCH?</p><h2>CONTACT <em>RAM GAMING</em></h2><p class="contact-intro">Talk to the tournament organizer about schedules, registration or payment verification.</p></div><div class="contact neon-frame"><p>Organizer <b>Ramraj Saini</b></p><p>Mobile / WhatsApp <b>9376090619</b></p><p>UPI ID <b>9376090619@fam</b></p><a class="btn" target="_blank" rel="noopener" href="https://wa.me/919376090619">CONTACT ON WHATSAPP <span>➜</span></a></div></section>
-</main>
-<footer><a class="brand footer-brand" href="#home"><span class="brand-crown">♛</span><span>RAM <b>GAMING</b><small>FREE FIRE ARENA</small></span></a><p>PLAY. COMPETE. WIN.</p><small>Independent community tournament website, not affiliated with Garena.</small><p><button id="adminOpen" type="button" class="admin-login-btn">ADMIN LOGIN</button></p></footer>
-<div class="modal hidden" id="login"><div class="box"><button class="x" data-close="login" type="button">×</button><h2>Login to Ram Gaming</h2><p>Use Google to register for tournaments.</p><button class="btn" id="googleLogin" type="button">Continue with Google</button><button class="btn outline" id="logout" type="button" hidden>Sign out</button><p id="loginmsg">Your Google account will be used to identify your registration.</p></div></div>
-<div class="modal hidden" id="admin"><div class="box wide"><button class="x" data-close="admin" type="button">×</button><h2>Admin Dashboard</h2><p id="adminmsg">Sign in with your authorized admin Google account.</p><div id="editor" class="hidden"></div></div></div>
-<div class="modal hidden" id="team"><div class="box wide"><button class="x" data-close="team" type="button">×</button><h2>Team Registration</h2><p id="selected"></p><form id="teamform"><label>Team name<input name="team" required maxlength="60"></label><div id="playerFields"></div><label>Payment UTR/reference<input name="utr" required maxlength="80"></label><label><input type="checkbox" required> I confirm these details are correct.</label><button class="btn" type="submit">Submit registration request</button></form><p class="notice">Your request is not confirmed until the organizer checks your payment.</p></div></div>
+<section class="section dark" id="how">
+  <h2>HOW TO <em>JOIN</em></h2>
+  <div class="steps">
+    <article><b>01</b><h3>Google Login</h3><p>Login securely with your Google account.</p></article>
+    <article><b>02</b><h3>Choose Tournament</h3><p>Check the date, time, entry fee and prize.</p></article>
+    <article><b>03</b><h3>Pay Entry Fee</h3><p>Scan the official QR and keep your payment reference.</p></article>
+    <article><b>04</b><h3>Submit Team</h3><p>Enter all team members' details and payment reference.</p></article>
+  </div>
+  <p class="notice">Payment is checked by the organizer. Submitting a reference does not confirm payment.</p>
+</section>
+
+<section class="section payment" id="payment">
+  <div>
+    <h2>PAYMENT <em>METHOD</em></h2>
+    <p>Confirm the tournament and amount before paying.</p>
+    <div class="upi"><span>UPI ID</span><strong>9376090619@fam</strong><button id="copy" type="button">Copy UPI ID</button></div>
+    <p>Account name: Ramraj Saini · Mobile: 9376090619</p>
+  </div>
+  <div class="qr"><img src="assets/payment-qr.jpg" alt="UPI payment QR"><p>Scan to pay with any UPI app</p></div>
+</section>
+
+<section class="section" id="contact">
+  <h2>CONTACT <em>RAM GAMING</em></h2>
+  <div class="contact">
+    <p>Organizer: <b>Ramraj Saini</b></p>
+    <p>Mobile / WhatsApp: <b>9376090619</b></p>
+    <p>UPI ID: <b>9376090619@fam</b></p>
+    <a class="btn" target="_blank" rel="noopener" href="https://wa.me/919376090619">Contact on WhatsApp</a>
+  </div>
+</section>
+
+<footer>
+  ♛ RAM <b>GAMING</b>
+  <p>Play. Compete. Win.</p>
+  <small>Independent community tournament website, not affiliated with Garena.</small>
+  <p><button id="adminOpen" type="button" class="admin-login-btn">Admin Login</button></p>
+</footer>
+
+<div class="modal hidden" id="login">
+  <div class="box">
+    <button class="x" data-close="login" type="button">×</button>
+    <h2>Login to Ram Gaming</h2>
+    <p>Use Google to register for tournaments.</p>
+    <button class="btn" id="googleLogin" type="button">Continue with Google</button>
+    <button class="btn outline" id="logout" type="button" hidden>Sign out</button>
+    <p id="loginmsg">Your Google account will be used to identify your registration.</p>
+  </div>
+</div>
+
+<div class="modal hidden" id="admin">
+  <div class="box wide">
+    <button class="x" data-close="admin" type="button">×</button>
+    <h2>Admin Dashboard</h2>
+    <p id="adminmsg">Sign in with your authorized admin Google account.</p>
+    <div id="editor" class="hidden"></div>
+  </div>
+</div>
+
+<div class="modal hidden" id="team">
+  <div class="box wide">
+    <button class="x" data-close="team" type="button">×</button>
+    <h2>Team Registration</h2>
+    <p id="selected"></p>
+    <form id="teamform">
+      <label>Team name<input name="team" required maxlength="60"></label>
+      <div id="playerFields"></div>
+      <label>Payment UTR/reference<input name="utr" required maxlength="80"></label>
+      <label><input type="checkbox" required> I confirm these details are correct.</label>
+      <button class="btn" type="submit">Submit registration request</button>
+    </form>
+    <p class="notice">Your request is not confirmed until the organizer checks your payment.</p>
+  </div>
+</div>
 <div id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
