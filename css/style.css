@@ -105,3 +105,13 @@ input:focus,textarea:focus,select:focus{outline:2px solid #ffc928aa;outline-offs
 @media(max-width:500px){.arena-buddy .buddy-toggle{width:88px;height:108px;}}
 
 .contact-socials{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.contact-socials .btn{display:inline-flex;align-items:center;justify-content:center}@media(max-width:500px){.contact-socials{flex-direction:column}.contact-socials .btn{width:100%}}
+
+
+/* Clean custom guide mascot: SVG has no bitmap or white backdrop. */
+.arena-buddy .buddy-toggle{width:88px;height:100px;padding:5px;display:grid;place-items:center;overflow:visible;border:1px solid #a66cff99!important;border-radius:25px!important;background:radial-gradient(ellipse at 50% 40%,#32204acc,#100d1df2 72%)!important;box-shadow:0 0 0 4px #a66cff18,0 9px 28px #0009,0 0 22px #a536ff55!important;}
+.arena-buddy .buddy-toggle:hover{background:radial-gradient(ellipse at 50% 40%,#432961,#151020)!important;box-shadow:0 0 0 4px #a66cff22,0 10px 32px #000a,0 0 28px #a536ff77!important;}
+.arena-buddy .buddy-face{width:100%;height:100%;display:grid;place-items:center;overflow:visible;background:transparent!important;}
+.arena-buddy .hop-guide-icon{display:block;width:76px;height:88px;overflow:visible;filter:drop-shadow(0 3px 7px #bc69ff66);}
+.arena-buddy .buddy-avatar{display:grid;place-items:center;background:transparent!important;}
+.arena-buddy .buddy-avatar .hop-guide-icon{width:48px;height:50px;}
+@media(max-width:500px){.arena-buddy .buddy-toggle{width:78px;height:90px}.arena-buddy .hop-guide-icon{width:66px;height:76px}}
