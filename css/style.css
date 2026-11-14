@@ -119,3 +119,7 @@ input:focus,textarea:focus,select:focus{outline:2px solid #ffc928aa;outline-offs
 /* Slightly reduce the Agent Hop artwork inside the launcher, keeping its button size. */
 .arena-buddy .hop-guide-icon{width:62px;height:72px}
 @media(max-width:500px){.arena-buddy .hop-guide-icon{width:56px;height:65px}}
+
+/* Make the Agent Hop mark noticeably smaller within the same launcher. */
+.arena-buddy .hop-guide-icon{width:44px;height:52px}
+@media(max-width:500px){.arena-buddy .hop-guide-icon{width:40px;height:47px}}
