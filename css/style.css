@@ -169,3 +169,23 @@ footer{background:rgba(4,7,13,.72);border-top:1px solid rgba(255,255,255,.14);ba
 .buddy-head{border-bottom-color:rgba(255,255,255,.16)}
 @media(max-width:800px){nav{background:rgba(8,12,22,.88);border:1px solid rgba(255,255,255,.16);border-radius:0 0 18px 18px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}.hero>div{border-radius:22px}}
 @media(prefers-reduced-motion:reduce){.tournament:hover{transform:none}}
+
+
+/* Stronger visible frosted-glass finish across every section. */
+body{background-image:radial-gradient(ellipse at 14% 8%,rgba(100,135,210,.3),transparent 35%),radial-gradient(ellipse at 88% 26%,rgba(166,108,255,.27),transparent 32%),radial-gradient(ellipse at 50% 88%,rgba(70,177,191,.18),transparent 38%)}
+header{background:linear-gradient(120deg,rgba(255,255,255,.10),rgba(255,255,255,.025) 34%,rgba(17,22,36,.68)),rgba(10,14,25,.65);border-bottom-color:rgba(255,255,255,.22);box-shadow:0 10px 38px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.22)}
+.hero>div{border-color:rgba(255,255,255,.3);background:linear-gradient(135deg,rgba(255,255,255,.20),rgba(255,255,255,.075) 52%,rgba(128,155,214,.12));box-shadow:0 28px 75px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.42),inset 0 -1px 0 rgba(255,255,255,.08);backdrop-filter:blur(28px) saturate(175%);-webkit-backdrop-filter:blur(28px) saturate(175%)}
+.owner{background:linear-gradient(110deg,rgba(255,255,255,.10),rgba(255,255,255,.035));border-block-color:rgba(255,255,255,.2);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 -1px 0 rgba(255,255,255,.08)}
+.section.dark{background:linear-gradient(120deg,rgba(255,255,255,.055),rgba(255,255,255,.018));border-block-color:rgba(255,255,255,.16)}
+.tournament,.steps article,.contact,.qr,.admin-tournament,.registration-card,.upi{background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.075) 44%,rgba(133,152,194,.075) 72%,rgba(255,255,255,.11));border-color:rgba(255,255,255,.28);box-shadow:0 20px 48px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.4),inset 0 -1px 0 rgba(255,255,255,.08);backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%)}
+.tournament:hover{background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.095) 48%,rgba(166,108,255,.12));border-color:rgba(255,255,255,.42)}
+.steps article{border-color:rgba(255,255,255,.25)}
+.contact,.qr{background:linear-gradient(135deg,rgba(255,255,255,.19),rgba(255,255,255,.07) 58%,rgba(115,144,207,.09));border-radius:22px}
+footer{background:linear-gradient(120deg,rgba(255,255,255,.075),rgba(8,12,20,.76));border-top-color:rgba(255,255,255,.2);box-shadow:0 -8px 36px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.16)}
+.box{background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(30,39,58,.77) 45%,rgba(10,14,24,.82));border-color:rgba(255,255,255,.32);box-shadow:0 30px 80px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.42);backdrop-filter:blur(30px) saturate(175%);-webkit-backdrop-filter:blur(30px) saturate(175%)}
+.buddy-panel{background:linear-gradient(145deg,rgba(255,255,255,.19),rgba(35,32,51,.83) 45%,rgba(10,12,21,.86));border-color:rgba(255,255,255,.3);box-shadow:0 24px 68px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.34);}
+.buddy-guide,.buddy-welcome,.buddy-quick button,.buddy-voice-select{background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,255,255,.055));border-color:rgba(255,255,255,.23);box-shadow:inset 0 1px 0 rgba(255,255,255,.24)}
+.buddy-reply{background:rgba(8,11,18,.5);border-color:rgba(255,255,255,.23)}
+.buddy-toggle{border-color:rgba(255,255,255,.48)!important;background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(144,104,207,.24) 52%,rgba(25,21,38,.85))!important;box-shadow:0 14px 36px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.58),0 0 25px rgba(166,108,255,.32)!important}
+.upi{background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.055));border-color:rgba(255,255,255,.24)}
+@media(max-width:800px){nav{background:linear-gradient(140deg,rgba(255,255,255,.17),rgba(12,16,28,.88));border-color:rgba(255,255,255,.26);box-shadow:0 20px 42px rgba(0,0,0,.36),inset 0 1px 0 rgba(255,255,255,.3)}}
