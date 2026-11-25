@@ -123,3 +123,49 @@ input:focus,textarea:focus,select:focus{outline:2px solid #ffc928aa;outline-offs
 /* Make the Agent Hop mark noticeably smaller within the same launcher. */
 .arena-buddy .hop-guide-icon{width:44px;height:52px}
 @media(max-width:500px){.arena-buddy .hop-guide-icon{width:40px;height:47px}}
+
+
+/* Liquid Glass system for the full Ram Gaming site. */
+:root{--glass-surface:rgba(255,255,255,.075);--glass-surface-strong:rgba(255,255,255,.11);--glass-stroke:rgba(255,255,255,.19);--glass-highlight:rgba(255,255,255,.26);--glass-shadow:0 18px 55px rgba(0,0,0,.34)}
+html{color-scheme:dark}
+body{background:radial-gradient(ellipse at 12% 8%,rgba(72,103,176,.25),transparent 34%),radial-gradient(ellipse at 88% 26%,rgba(127,67,178,.22),transparent 30%),radial-gradient(ellipse at 48% 92%,rgba(29,120,135,.13),transparent 34%),#080b12;background-attachment:fixed}
+header{background:rgba(8,12,22,.66);backdrop-filter:blur(24px) saturate(165%);-webkit-backdrop-filter:blur(24px) saturate(165%);border-bottom:1px solid rgba(255,255,255,.13);box-shadow:0 8px 32px rgba(0,0,0,.18)}
+.brand{color:#fff;text-shadow:0 1px 16px rgba(255,255,255,.1)}
+nav a{padding:9px 12px;border:1px solid transparent;border-radius:999px;transition:background .2s,border-color .2s,color .2s}
+nav a:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.15)}
+.hero{background-image:linear-gradient(100deg,rgba(6,9,17,.78),rgba(6,9,17,.4) 62%,rgba(6,9,17,.22)),url('../assets/ramraj-photo.jpg');background-position:center 30%;}
+.hero::after{background:linear-gradient(115deg,rgba(7,11,19,.54),rgba(9,12,20,.12) 65%,rgba(9,12,20,.28));backdrop-filter:saturate(115%)}
+.hero>div{padding:clamp(20px,4vw,34px);border:1px solid rgba(255,255,255,.18);border-radius:28px;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.035) 58%,rgba(255,255,255,.07));backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);box-shadow:0 22px 64px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.3);}
+.owner{background:rgba(255,255,255,.035);border-block-color:rgba(255,255,255,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.owner img{border-color:rgba(255,255,255,.66);box-shadow:0 0 0 5px rgba(255,255,255,.08),0 10px 34px rgba(0,0,0,.36)}
+.section.dark{background:rgba(255,255,255,.025);border-block-color:rgba(255,255,255,.1)}
+.tournament,.steps article,.contact,.qr,.box,.admin-tournament,.registration-card,.upi,.buddy-panel,.buddy-guide,.buddy-welcome,.buddy-quick button,.buddy-reply,.buddy-voice-select{background:linear-gradient(145deg,rgba(255,255,255,.105),rgba(255,255,255,.045) 58%,rgba(255,255,255,.075));border:1px solid var(--glass-stroke);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);box-shadow:var(--glass-shadow),inset 0 1px 0 rgba(255,255,255,.2)}
+.tournament,.steps article,.contact,.qr,.admin-tournament,.registration-card,.upi{border-radius:20px;position:relative}
+.tournament::before{height:2px;opacity:.7;background:linear-gradient(90deg,transparent,var(--gold),#c9a8ff,transparent)}
+.tournament:hover{border-color:rgba(255,255,255,.34);box-shadow:0 22px 58px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.28);transform:translateY(-4px)}
+.steps article{border-radius:19px}
+.btn,button{border:1px solid rgba(255,255,255,.28);box-shadow:0 8px 26px rgba(0,0,0,.19),inset 0 1px 0 rgba(255,255,255,.38);}
+.btn:not(.outline),button:not(.outline):not(.x):not(.buddy-close):not(.buddy-quick button){background:linear-gradient(135deg,#ffe16b 0%,#ffc928 55%,#e9a91a 100%)}
+.outline{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.32);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+button:hover,.btn:hover{filter:brightness(1.12);box-shadow:0 12px 32px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.45)}
+.admin-login-btn{background:linear-gradient(130deg,rgba(255,147,66,.9),rgba(240,77,43,.85));border:1px solid rgba(255,255,255,.25)}
+.notice{background:rgba(255,201,40,.11);border-color:rgba(255,201,40,.28);backdrop-filter:blur(14px)}
+.upi{border-radius:16px}
+.qr img{border:1px solid rgba(255,255,255,.25);box-shadow:0 12px 32px rgba(0,0,0,.25)}
+footer{background:rgba(4,7,13,.72);border-top:1px solid rgba(255,255,255,.14);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.modal{background:rgba(2,4,9,.58);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.box{background:linear-gradient(145deg,rgba(31,40,59,.9),rgba(11,16,27,.88));border-color:rgba(255,255,255,.24);border-radius:24px}
+.box input:not([type=checkbox]),.box textarea,.box select,.registration-sort select{background:rgba(4,8,16,.53);border-color:rgba(255,255,255,.21);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#toast{background:rgba(27,39,60,.88);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(18px);box-shadow:0 12px 38px rgba(0,0,0,.35)}
+.arena-buddy .buddy-toggle{background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(140,91,211,.28) 55%,rgba(25,19,40,.82))!important;border-color:rgba(255,255,255,.34)!important;backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);box-shadow:0 12px 38px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.45),0 0 24px rgba(166,108,255,.28)!important}
+.buddy-panel{background:linear-gradient(145deg,rgba(30,34,49,.88),rgba(10,12,21,.82));border-color:rgba(255,255,255,.23);border-radius:24px;backdrop-filter:blur(28px) saturate(170%);-webkit-backdrop-filter:blur(28px) saturate(170%)}
+.buddy-panel:before{height:2px;opacity:.8;background:linear-gradient(90deg,transparent,#fff7ce,#c9a8ff,transparent)}
+.buddy-guide-intro,.buddy-progress-track,.buddy-step-link{background-color:rgba(255,255,255,.055);border-color:rgba(255,255,255,.16);backdrop-filter:blur(12px)}
+.buddy-quick button{background:rgba(255,255,255,.075);border-color:rgba(255,255,255,.2)}
+.buddy-quick button:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4)}
+.buddy-reply{background:rgba(5,8,14,.42);border-color:rgba(255,255,255,.17)}
+.buddy-voice-select{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.17)}
+.buddy-voice-select select{background:rgba(4,7,13,.68);border-color:rgba(255,255,255,.2)}
+.buddy-head{border-bottom-color:rgba(255,255,255,.16)}
+@media(max-width:800px){nav{background:rgba(8,12,22,.88);border:1px solid rgba(255,255,255,.16);border-radius:0 0 18px 18px;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}.hero>div{border-radius:22px}}
+@media(prefers-reduced-motion:reduce){.tournament:hover{transform:none}}
